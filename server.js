@@ -15,7 +15,7 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(chatId, 'Запустите веб-приложение', {
         reply_markup: {
             inline_keyboard: [
-                [{ text: 'Открыть приложение', web_app: { url: 'https://tg-mini-29qkkltj5-mxms-projects.vercel.app/' } }]
+                [{ text: 'Открыть приложение', web_app: { url: 'https://tg-mini-app-ilfx.vercel.app/' } }]
             ]
         }
     });

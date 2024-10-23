@@ -19,7 +19,7 @@ const NavBar = () => {
                 <Link
                     to={button.path}
                     key={button.name}
-                    className={`p-[10px] min-w-[83px] flex items-center gap-[3px] flex-col justify-center font-[500] rounded-[10px] 
+                    className={`p-[10px] w-full flex items-center gap-[3px] flex-col justify-center font-[500] rounded-[10px] 
                     ${location.pathname === button.path ? 'bg-primary' : ''}`}
                 >
                     <Icon
