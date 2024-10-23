@@ -5,7 +5,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const BOT_TOKEN = '7503258575:AAFdezq-FOIFbyx8mokPu-Lj1mGqiZjSk2w';
+const BOT_TOKEN = '7930642338:AAHsFK0DN9vLYUcTvrW8Dtr82m3GUnebGfk';
 
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });
 
@@ -15,7 +15,7 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(chatId, 'Запустите веб-приложение', {
         reply_markup: {
             inline_keyboard: [
-                [{ text: 'Открыть приложение', web_app: { url: 'https://42f5-178-150-235-74.ngrok-free.app' } }]
+                [{ text: 'Открыть приложение', web_app: { url: 'https://tg-mini-29qkkltj5-mxms-projects.vercel.app/' } }]
             ]
         }
     });
