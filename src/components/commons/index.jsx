@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const TelegramMiniApp = () => {
-    useEffect(() => {
-        const tg = window.Telegram.WebApp;
-        tg.ready();  // Сообщаем Telegram, что WebApp готов к использованию
-    }, []);
+
 
     return (
         <div>
