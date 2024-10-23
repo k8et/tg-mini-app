@@ -1,10 +1,11 @@
-import './App.css';
-import TelegramMiniApp from "./components/commons";
+import MainLayout from "./layout";
 
 function App() {
 
     return (
-       <TelegramMiniApp/>
+        <MainLayout>
+
+        </MainLayout>
     );
 }
 
