@@ -9,19 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <TonConnectUIProvider
-            manifestUrl={`${window.location.origin}/tonconnect-manifest.json`}
-            uiConfig={{
-                button: {
-                    theme: "dark",
-                    style: {
-                        backgroundColor: "#000",
-                        color: "#fff",
-                        borderRadius: "10px",
-                        padding: "16px 22px",
-                    },
-                }
-            }}
-        >
+            manifestUrl={`${window.location.origin}/tonconnect-manifest.json`}>
             <BrowserRouter>
                 <App/>
             </BrowserRouter>
