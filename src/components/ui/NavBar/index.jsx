@@ -14,7 +14,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="h-[82px] w-full bg-black p-[10px] flex gap-[10px]">
+        <div className="h-[82px] w-full bg-black p-[10px] flex gap-[10px] z-[99]">
             {buttons.map((button) => (
                 <Link
                     to={button.path}

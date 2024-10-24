@@ -7,7 +7,7 @@ const MainLayout = (props) => {
     return (
         <nav className={'h-screen bg-green-500 flex flex-col justify-between'}>
             <div></div>
-            <div>
+            <div className={"h-full"}>
                 {children}
             </div>
             <NavBar/>
