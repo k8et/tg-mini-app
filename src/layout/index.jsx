@@ -5,7 +5,7 @@ const MainLayout = (props) => {
     const {children} = props
 
     return (
-        <nav className={'h-screen bg-green-500 flex flex-col justify-between'}>
+        <nav className={'h-screen bg-black flex flex-col justify-between'}>
             <div></div>
             <div className={"h-full"}>
                 {children}
