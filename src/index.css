@@ -13,7 +13,7 @@ body {
 
 .go1487791704{
     font-family: 'SF Pro Display', sans-serif;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 400;
 }
 .go3974562317 {
@@ -27,5 +27,5 @@ body {
 }
 
 .custom-button:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
 }
