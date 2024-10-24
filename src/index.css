@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 body {
+  overflow: hidden;
   font-family: 'SF Pro Display', sans-serif;
   margin: 0;
   padding: 0;

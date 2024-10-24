@@ -1,12 +1,12 @@
 import React from 'react';
-import cat from "../../assets/svg/cat.svg"
-import bg from "../../assets/svg/background.svg"
+import cat from "../../assets/svg/cat.svg";
+import bg from "../../assets/svg/background.svg";
 
 const Main = () => {
     return (
-        <div className=" h-full relative">
-            <img className={"absolute"} src={bg} alt="bg"/>
-            <img className={"absolute -bottom-[20px] z-[100] left-[7px]"} src={cat} alt="Cat" />
+        <div className="w-screen h-full relative flex items-end justify-center ">
+            <img className="absolute inset-0 w-full h-full object-cover" src={bg} alt="Background"/>
+            <img className="absolute -mb-[20px] z-[100] " src={cat} alt="Cat"/>
         </div>
     );
 };
