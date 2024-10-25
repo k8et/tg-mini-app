@@ -53,15 +53,16 @@ const Dish = () => {
     const handlerToggleModal = () => {
         setIsModalVisible(!isModalVisible);
     };
+
     const modalSpring = useSpring({
         transform: isModalVisible ? 'translateY(0%)' : 'translateY(100%)',
         config: { tension: 280, friction: 40 },
     });
 
     return (
-        <div className="w-screen h-full relative flex items-end justify-center bg-[#101010]">
+        <div className="w-screen h-full overflow-x-hidden  relative flex items-end justify-center bg-[#101010]">
             <img className="absolute inset-0 w-full h-full object-cover z-[99]" src={bg} alt="Background" />
-            <div className="z-[999] pt-[30px] pb-[5px] h-full w-full flex flex-col justify-center px-[12px] gap-[6px]">
+            <div className="z-[999] pt-[30px] pb-[5px] h-full    w-full flex flex-col justify-center px-[12px] gap-[6px]">
                 <h1 className="font-[700] text-white text-[22px] text-center">
                     Выберите ваше <br /><span className="text-[#0098EA]">блюдо</span> дня!
                 </h1>
@@ -115,40 +116,43 @@ const Dish = () => {
                 </div>
                 <Button onClick={handlerToggleModal}>Выбрать</Button>
 
-                <animated.div style={modalSpring} className="w-full bg-[#181818] text-white rounded-[10px] py-[16px] px-[12px] flex flex-col gap-[6px] absolute -bottom-[79px] left-0 z-50">
-                    <h1 className="font-[500] text-[16px]">Подтвердите выбор</h1>
-                    <div className="flex items-center gap-1">
-                        Баланс:
-                        <span className="flex items-center gap-1">
-                            <Icon width={12} height={12} name={"ton"} />
-                            0.00
-                        </span>
-                    </div>
-                    <Input
-                        className="mt-[5px]"
-                        type="number"
-                        error={errors.sum}
-                        onChange={handlerChange}
-                        value={form.sum}
-                        name="sum"
-                        placeholder="Укажите сумму ставки"
-                    />
-                    <div className="flex w-full mt-[10px] gap-[6px]">
-                        <Button
-                            className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[12px] text-white" : " text-white !text-[12px]"}
-                            disabled={!isValid}
-                            onClick={handlerSubmit}
-                        >
-                            Сделать ставку
-                        </Button>
-                        <Button className="bg-[#1D1D1D] !text-[12px]" onClick={handlerToggleModal}>
-                            Отмена
-                        </Button>
-                    </div>
-                </animated.div>
+                {isModalVisible && (
+                    <animated.div style={modalSpring} className="w-full bg-[#181818] text-white rounded-[10px] py-[16px] px-[12px] flex flex-col gap-[6px] fixed bottom-0 left-0 z-50">
+                        <h1 className="font-[500] text-[16px]">Подтвердите выбор</h1>
+                        <div className="flex items-center gap-1">
+                            Баланс:
+                            <span className="flex items-center gap-1">
+                                <Icon width={12} height={12} name={"ton"} />
+                                0.00
+                            </span>
+                        </div>
+                        <Input
+                            className="mt-[5px]"
+                            type="number"
+                            error={errors.sum}
+                            onChange={handlerChange}
+                            value={form.sum}
+                            name="sum"
+                            placeholder="Укажите сумму ставки"
+                        />
+                        <div className="flex w-full mt-[10px] gap-[6px]">
+                            <Button
+                                className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[12px] text-white" : " text-white !text-[12px]"}
+                                disabled={!isValid}
+                                onClick={handlerSubmit}
+                            >
+                                Сделать ставку
+                            </Button>
+                            <Button className="bg-[#1D1D1D] !text-[12px]" onClick={handlerToggleModal}>
+                                Отмена
+                            </Button>
+                        </div>
+                    </animated.div>
+                )}
             </div>
         </div>
     );
 };
 
 export default Dish;
+

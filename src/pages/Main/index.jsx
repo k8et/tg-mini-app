@@ -19,7 +19,7 @@ const Main = () => {
     const userFriendlyAddress = useTonAddress();
 
     return (
-        <div className="w-screen h-full relative flex items-end justify-center bg-[#69ABDB]">
+        <div className="w-screen h-full relative overflow-hidden flex items-end justify-center bg-[#69ABDB]">
             <img className="absolute inset-0 w-full mt-[35px] h-full object-cover z-[99]" src={bg} alt="Background"/>
             <img className="absolute w-[203px] h-[223px] right-0 top-[0] object-cover z-[99]" src={sun} alt="sun"/>
             <img className="absolute inset-0 w-full h-full object-cover z-[98]" src={clouds} alt="Clouds"/>
