@@ -8,6 +8,13 @@ import clouds from "../../assets/gif/clouds.gif";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
 
+const iconsData = [
+    { time: '13:21', icon: 'fish-icon' },
+    { time: '14:30', icon: 'fish-icon' },
+    { time: '15:45', icon: 'fish-icon' },
+    { time: '16:10', icon: 'fish-icon' }
+];
+
 const Main = () => {
     const userFriendlyAddress = useTonAddress();
 
@@ -21,7 +28,7 @@ const Main = () => {
                 <Link
                     to={"/dish"}
                     className={"custom-button w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
-                    <span  className={"font-[500] text-[14px]"}>Выберите блюдо дня</span>
+                    <span className={"font-[500] text-[14px]"}>Выберите блюдо дня</span>
                     <span className={"font-[500] text-[14px] text-white/75"}>Осталось: 2 часа</span>
                 </Link>
                 <div className={"w-full justify-between flex h-[42px]"}>
@@ -42,9 +49,38 @@ const Main = () => {
                     )}
                     <QuestionModal/>
                 </div>
+                {userFriendlyAddress &&
+                    <div className={"w-full flex h-auto my-auto  justify-end"}>
+                        <div
+                            className={"relative h-auto w-[42px]  flex flex-col gap-[5px] items-center justify-center"}>
+                            <div
+                                style={{
+                                    background: 'linear-gradient(180.22deg, rgba(0, 0, 0, 0.6) 0.19%, rgba(0, 0, 0, 0) 50.51%)'
+                                }}
+                                className={"absolute inset-0 h-full  rounded-[11px] z-10"}
+                            />
+                            {iconsData.map((item, index) => (
+                                <div key={index} className={"relative h-[70px] z-0 w-full"}>
+                                    <Icon width={42} height={57} name={item.icon}/>
+                                    <div
+                                        className={"w-full bg-[#2B93A7] text-white font-[500] text-[10px] h-[15px] rounded-b-[119px] absolute bottom-[0px] flex items-center justify-center"}>
+                                        {item.time}
+                                    </div>
+                                </div>
+                            ))}
+                            <div
+                                style={{
+                                    background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0.19%, rgba(0, 0, 0, 0) 50.51%)'
+                                }}
+                                className={"absolute inset-0 h-full  rounded-[11px] z-10"}
+                            />
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-    );
+    )
+        ;
 };
 
 export default Main;
