@@ -10,13 +10,37 @@ const ChoseDishModal = () => {
     const {isOpenModal, handlerToggleModal} = useModal();
     useEffect(() => {
         if (window.Telegram.WebApp) {
-            window.Telegram.WebApp.onEvent('backButtonClicked', () => {
-                handlerToggleModal();
-            });
-
             window.Telegram.WebApp.ready();
+
+            const handleBackButtonClick = () => {
+                handlerToggleModal();
+                resetMainButton();
+            };
+
+            const setMainButton = () => {
+                window.Telegram.WebApp.MainButton.text = "Назад";
+                window.Telegram.WebApp.MainButton.show();
+                window.Telegram.WebApp.onEvent('backButtonClicked', handleBackButtonClick);
+            };
+
+            const resetMainButton = () => {
+                window.Telegram.WebApp.MainButton.text = "Выбрать";
+                window.Telegram.WebApp.MainButton.show();
+            };
+
+            if (isOpenModal) {
+                setMainButton(); // Устанавливаем кнопку "Назад" при открытии модального окна
+            } else {
+                resetMainButton(); // Возвращаем исходное состояние при закрытии модального окна
+            }
+
+            // Очистка обработчиков при размонтировании компонента
+            return () => {
+                window.Telegram.WebApp.offEvent('backButtonClicked', handleBackButtonClick);
+                resetMainButton(); // Убедимся, что кнопка сбрасывается при размонтировании
+            };
         }
-    }, [handlerToggleModal]);
+    }, [isOpenModal, handlerToggleModal]);
     return (
         <>
             <Button onClick={handlerToggleModal}>
