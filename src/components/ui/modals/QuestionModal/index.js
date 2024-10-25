@@ -41,7 +41,7 @@ const QuestionModal = () => {
                     {React.Children.map(dots, (dot, index) => (
                         <div
                             key={index}
-                            className={`bg-[#2F2F2F] rounded-full w-[8px] h-[8px] ${sliderRef.current?.innerSlider.state.currentSlide === index ? 'bg-[#0098EA]' : ''}`}
+                            className={`bg-[#2F2F2F] rounded-full w-[8px] h-[8px] ${sliderRef.current?.innerSlider.state.currentSlide === index ? '!bg-[#0098EA]' : ''}`}
                             onClick={() => sliderRef.current.innerSlider.slickGoTo(index)}
                         />
                     ))}
