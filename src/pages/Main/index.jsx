@@ -6,6 +6,7 @@ import {TonConnectButton, useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import clouds from "../../assets/gif/clouds.gif";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
+import {Link} from "react-router-dom";
 
 const Main = () => {
     const userFriendlyAddress = useTonAddress();
@@ -16,12 +17,13 @@ const Main = () => {
             <img className="absolute w-[203px] h-[223px] right-0 top-[0] object-cover z-[99]" src={sun} alt="sun"/>
             <img className="absolute inset-0 w-full h-full object-cover z-[98]" src={clouds} alt="Clouds"/>
             <img className="absolute -mb-[20px] z-[100]" src={cat} alt="Cat"/>
-            <div className="z-[999] h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-                <button
+            <div className="!z-[999] h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
+                <Link
+                    to={"/dish"}
                     className={"custom-button w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
-                    <span className={"font-[500] text-[14px]"}>Выберите блюдо дня</span>
+                    <span  className={"font-[500] text-[14px]"}>Выберите блюдо дня</span>
                     <span className={"font-[500] text-[14px] text-white/75"}>Осталось: 2 часа</span>
-                </button>
+                </Link>
                 <div className={"w-full justify-between flex h-[42px]"}>
                     {!userFriendlyAddress ? (
                         <div className={"relative custom-button"}>
