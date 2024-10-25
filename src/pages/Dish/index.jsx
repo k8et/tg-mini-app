@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import bg from "../../assets/svg/fishBg.svg";
 import fishCard from "../../assets/svg/fishCard.svg";
 import fish from "../../assets/svg/fish.svg";
@@ -39,7 +39,18 @@ const Dish = () => {
             swiperRef.current.slideNext();
         }
     };
+    useEffect(() => {
+        if (window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.onEvent('backButtonClicked', () => {
 
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                }
+            });
+        }
+    }, []);
     return (
         <div className="w-screen h-full relative flex items-end justify-center bg-[#101010]">
             <img className="absolute inset-0 w-full h-full object-cover z-[99]" src={bg} alt="Background" />
