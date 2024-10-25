@@ -11,11 +11,12 @@ body {
     padding: 0;
 }
 
-.go1487791704{
+.go1487791704 {
     font-family: 'SF Pro Display', sans-serif;
     font-size: 12px;
     font-weight: 400;
 }
+
 .go3974562317 {
     width: 101px;
     background-color: black !important;
@@ -23,6 +24,7 @@ body {
     border-radius: 10px !important;
     padding: 16px 22px !important;
 }
+
 .custom-button {
     transition: transform 0.2s ease;
 }

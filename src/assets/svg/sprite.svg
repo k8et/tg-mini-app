@@ -41,4 +41,8 @@
             </clipPath>
         </defs>
     </symbol>
+    <symbol id="arrow-right" viewBox="0 0 7 13" fill="none">
+        <path d="M1.55579 1.6665L5.68969 5.8004C6.06575 6.17646 6.06575 6.78618 5.68969 7.16224L1.55579 11.2961"
+              stroke="black" stroke-width="1.92593" stroke-linecap="round"/>
+    </symbol>
 </svg>

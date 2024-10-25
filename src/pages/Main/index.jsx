@@ -2,9 +2,10 @@ import React from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import {TonConnectButton, useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import clouds from "../../assets/gif/clouds.gif";
+import QuestionModal from "../../components/ui/modals/QuestionModal";
 
 const Main = () => {
     const userFriendlyAddress = useTonAddress();
@@ -37,10 +38,7 @@ const Main = () => {
                             <span className={"font-[700] text-[14px]"}>0.00</span>
                         </button>
                     )}
-                    <button
-                        className={"rounded-[10px] custom-button w-[42px] h-[42] bg-black flex justify-center items-center "}>
-                        <Icon width={25} height={24} className={"custom-button"} name={"question"}/>
-                    </button>
+                    <QuestionModal/>
                 </div>
             </div>
         </div>
