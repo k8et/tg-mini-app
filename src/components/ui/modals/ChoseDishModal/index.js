@@ -8,36 +8,7 @@ import Button from "../../../commons/Button";
 
 const ChoseDishModal = () => {
     const {isOpenModal, handlerToggleModal} = useModal();
-    useEffect(() => {
-        if (window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
 
-            // Функция для обработки нажатия на кнопку "Назад"
-            const handleBackButtonClick = () => {
-                handlerToggleModal(); // Закрытие модального окна
-            };
-
-            const setBackButton = () => {
-                window.Telegram.WebApp.BackButton.show(); // Показываем кнопку
-                window.Telegram.WebApp.BackButton.onClick(handleBackButtonClick);
-            };
-
-            const hideBackButton = () => {
-                window.Telegram.WebApp.BackButton.hide();
-            };
-
-            if (isOpenModal) {
-                setBackButton();
-            } else {
-                hideBackButton();
-            }
-
-            return () => {
-                hideBackButton(); // Скрываем кнопку при размонтировании
-                window.Telegram.WebApp.BackButton.offClick(handleBackButtonClick); // Удаляем обработчик
-            };
-        }
-    }, [isOpenModal, handlerToggleModal]);
     return (
         <>
             <Button onClick={handlerToggleModal}>
