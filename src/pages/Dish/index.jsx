@@ -133,7 +133,7 @@ const Dish = () => {
                         name="sum"
                         placeholder="Укажите сумму ставки"
                     />
-                    <div className="flex w-full gap-[6px]">
+                    <div className="flex w-full mt-[10px] gap-[6px]">
                         <Button
                             className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[12px] text-white" : " text-white !text-[12px]"}
                             disabled={!isValid}
