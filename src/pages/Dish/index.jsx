@@ -42,11 +42,10 @@ const Dish = () => {
     useEffect(() => {
         if (window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.onEvent('backButtonClicked', () => {
 
+            window.Telegram.WebApp.onEvent('backButtonClicked', () => {
                 if (window.history.length > 1) {
                     window.history.back();
-                } else {
                 }
             });
         }

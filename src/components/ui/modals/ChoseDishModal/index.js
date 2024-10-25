@@ -11,10 +11,12 @@ const ChoseDishModal = () => {
     useEffect(() => {
         if (window.Telegram.WebApp) {
             window.Telegram.WebApp.onEvent('backButtonClicked', () => {
-                handlerToggleModal()
+                handlerToggleModal();
             });
+
+            window.Telegram.WebApp.ready();
         }
-    }, []);
+    }, [handlerToggleModal]);
     return (
         <>
             <Button onClick={handlerToggleModal}>
