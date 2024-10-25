@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
     "@telegram-apps/sdk": "^2.5.2",
     "@telegram-apps/sdk-react": "^2.0.9",
     "@testing-library/jest-dom": "^5.17.0",
