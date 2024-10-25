@@ -2,7 +2,6 @@ import { Route, Routes} from "react-router-dom";
 import MainLayout from "./layout";
 import Main from "./pages/Main";
 import Dish from "./pages/Dish";
-import {useEffect} from "react";
 
 
 
