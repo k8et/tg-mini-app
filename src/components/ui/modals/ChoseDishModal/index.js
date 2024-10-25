@@ -9,21 +9,12 @@ import Button from "../../../commons/Button";
 const ChoseDishModal = () => {
     const {isOpenModal, handlerToggleModal} = useModal();
     useEffect(() => {
-        const webApp = window.Telegram.WebApp;
-        webApp.BackButton.show();
-
-        webApp.BackButton.onClick(() => {
-            if (isOpenModal) {
-                handlerToggleModal();
-            } else {
-                console.log("Back button clicked");
-            }
-        });
-
-        return () => {
-            webApp.BackButton.hide();
-        };
-    }, [isOpenModal]);
+        if (window.Telegram.WebApp) {
+            window.Telegram.WebApp.onEvent('backButtonClicked', () => {
+                handlerToggleModal()
+            });
+        }
+    }, []);
     return (
         <>
             <Button onClick={handlerToggleModal}>
