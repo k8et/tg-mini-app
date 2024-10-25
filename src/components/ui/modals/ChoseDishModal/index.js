@@ -12,32 +12,29 @@ const ChoseDishModal = () => {
         if (window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
 
+            // Функция для обработки нажатия на кнопку "Назад"
             const handleBackButtonClick = () => {
-                handlerToggleModal();
-                resetMainButton();
+                handlerToggleModal(); // Закрытие модального окна
             };
 
-            const setMainButton = () => {
-                window.Telegram.WebApp.MainButton.text = "Назад";
-                window.Telegram.WebApp.MainButton.show();
-                window.Telegram.WebApp.onEvent('backButtonClicked', handleBackButtonClick);
+            const setBackButton = () => {
+                window.Telegram.WebApp.BackButton.show(); // Показываем кнопку
+                window.Telegram.WebApp.BackButton.onClick(handleBackButtonClick);
             };
 
-            const resetMainButton = () => {
-                window.Telegram.WebApp.MainButton.text = "Выбрать";
-                window.Telegram.WebApp.MainButton.show();
+            const hideBackButton = () => {
+                window.Telegram.WebApp.BackButton.hide();
             };
 
             if (isOpenModal) {
-                setMainButton(); // Устанавливаем кнопку "Назад" при открытии модального окна
+                setBackButton();
             } else {
-                resetMainButton(); // Возвращаем исходное состояние при закрытии модального окна
+                hideBackButton();
             }
 
-            // Очистка обработчиков при размонтировании компонента
             return () => {
-                window.Telegram.WebApp.offEvent('backButtonClicked', handleBackButtonClick);
-                resetMainButton(); // Убедимся, что кнопка сбрасывается при размонтировании
+                hideBackButton(); // Скрываем кнопку при размонтировании
+                window.Telegram.WebApp.BackButton.offClick(handleBackButtonClick); // Удаляем обработчик
             };
         }
     }, [isOpenModal, handlerToggleModal]);
