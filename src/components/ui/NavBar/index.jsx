@@ -7,7 +7,7 @@ const NavBar = () => {
 
     const buttons = [
         {name: 'home', label: 'Главная', path: '/'},
-        {name: 'store', label: 'Магазин', path: '/store'},
+        {name: 'store', label: 'Магазин', path: '/shop'},
         {name: 'friends', label: 'Друзья', path: '/friends'},
         {name: 'rewards', label: 'Награды', path: '/rewards'}
     ];

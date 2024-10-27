@@ -33,5 +33,19 @@ body {
     transform: scale(0.96);
 }
 
+.scrol-hidden {
+    /* Скрыть горизонтальную полосу прокрутки */
+    overflow-x: hidden;
 
+    /* Скрыть вертикальную полосу прокрутки, но оставить прокрутку возможной */
+    overflow-y: scroll; /* Или overflow-y: auto; */
+
+    /* Для Chrome и Safari */
+    scrollbar-width: none; /* Для Firefox */
+}
+
+/* Для Webkit-браузеров (Chrome, Safari) */
+.scrol-hidden::-webkit-scrollbar {
+    display: none; /* Скрыть полосу прокрутки */
+}
 

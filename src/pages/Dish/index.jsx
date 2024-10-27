@@ -61,7 +61,7 @@ const Dish = () => {
 
     return (
         <div className="w-screen h-full overflow-x-hidden  relative flex items-end justify-center bg-[#101010]">
-            <img className="absolute inset-0 w-full h-full object-cover z-[99]" src={bg} alt="Background" />
+            {/*<img className="absolute inset-0 w-full h-full object-cover z-[99]" src={bg} alt="Background" />*/}
             <div className="z-[999] pt-[30px] pb-[5px] h-full    w-full flex flex-col justify-center px-[12px] gap-[6px]">
                 <h1 className="font-[700] text-white text-[22px] text-center">
                     Выберите ваше <br /><span className="text-[#0098EA]">блюдо</span> дня!
@@ -81,9 +81,9 @@ const Dish = () => {
                         {slides.map((slide, index) => (
                             <SwiperSlide key={index} className="border border-white rounded-[20px]">
                                 <div className="text-center justify-between bg-[#151515] h-full flex flex-col px-[20px] py-[10px] items-center">
-                                    <img alt={"error"} src={fishCard} className={"absolute inset-0 w-full h-full object-cover z-[99]"} />
+                                    {/*<img alt={"error"} src={fishCard} className={"absolute inset-0 w-full h-full object-cover z-[99]"} />*/}
                                     <h2 className="text-white text-[16px] font-[500] w-full text-left">{slide.title}</h2>
-                                    <img alt={"error"} src={fish} className={" "} />
+                                    {/*<img alt={"error"} src={fish} className={" "} />*/}
                                     <p className="text-[#D7D7D7] leading-[14px] font-[300] text-[12px]">{slide.text}</p>
                                 </div>
                             </SwiperSlide>
