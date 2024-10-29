@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import fishCardBg from "../../assets/img/fishCardBg.png";
+import fishCard from "../../assets/img/fishCard.png";
 import fish from "../../assets/img/fish.png"
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css/effect-cards";
@@ -103,7 +104,7 @@ const Dish = () => {
                             <SwiperSlide key={index} className="border border-white rounded-[20px]">
                                 <div
                                     style={{
-                                        backgroundImage: `url('${fishCardBg}')`,
+                                        backgroundImage: `url('${fishCard}')`,
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
                                         backgroundSize: 'cover'

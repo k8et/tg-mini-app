@@ -18,10 +18,10 @@ function WalletButton() {
     return (
         <div className="relative ">
             {!userFriendlyAddress ? (
-                <div className="relative custom-button">
+                <div className="relative">
                     <TonConnectButton/>
                     <button
-                        className="w-full pointer-events-none h-[32px] text-white text-[14px] font-[500] top-0 absolute bg-black rounded-[10px]"
+                        className="w-full pointer-events-none h-full rounded-[10px]  text-white text-[14px] font-[500] top-0 absolute bg-black "
                     >
                         Connect
                     </button>
