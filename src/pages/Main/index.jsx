@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
 import clouds from "../../assets/gif/clouds.gif";
-import catGif from "../../assets/gif/cat.gif";
 import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
@@ -19,7 +18,9 @@ const iconsData = [
 
 const Main = () => {
     const userFriendlyAddress = useTonAddress();
-    const [isCatAnimated, setIsCatAnimated] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef(null); // Ссылка на элемент video
+    console.log(isPlaying,"isPlaying")
     const preloadImages = (imageArray) => {
         imageArray.forEach((src) => {
             const img = new Image();
@@ -28,14 +29,23 @@ const Main = () => {
     };
 
     useEffect(() => {
-        preloadImages([cat, bg, sun, clouds, catGif]);
+        preloadImages([cat, bg, sun, clouds]);
     }, []);
 
-    const handleCatClick = () => {
-        console.log("Cat clicked");
-        setIsCatAnimated(true);
-        setTimeout(() => setIsCatAnimated(false), 3000);
+    const handleVideoClick = () => {
+        setIsPlaying(true); // Start playing the video
+        if (videoRef.current) {
+            videoRef.current.play(); // Play the video
+
+            // Set a timeout to pause the video after 3 seconds
+            setTimeout(() => {
+                videoRef.current.pause();
+                setIsPlaying(false); // Update state to indicate the video is not playing
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
     };
+
+
     return (
         <div
             style={{
@@ -49,24 +59,27 @@ const Main = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover, 203px 223px, cover'
             }}
-            className={`w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]`}>
-            {isCatAnimated ? (
-                <img
-                    className="absolute -mb-[15vh] left-[5vw] z-[100] max-w-full h-auto"
-                    src={catGif}
-                    alt="Cat Animation"
+            className={`w-screen h-full relative !z-[100] flex items-end justify-center bg-[#69ABDB]`}>
+            {userFriendlyAddress ? (
+                <video
+                    ref={videoRef}
+                    className="absolute  -bottom-[100px] bg-transparent  z-[100] max-w-full h-auto"
+                    src="/video/cat.webm"
+                    loop
+                    muted
+                    autoPlay={isPlaying}
+                    onClick={handleVideoClick}
                 />
             ) : (
                 <img
                     width={310}
-                    className="absolute -mb-[4vh] left-[8vw] z-[100] max-w-full h-auto"
+                    className="absolute -bottom-[20px]  z-[100] max-w-full h-auto"
                     src={cat}
                     alt="Cat"
-                    onClick={handleCatClick}
                 />
             )}
             <div className="!z-[99] h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-            <Link
+                <Link
                     to={"/dish"}
                     className={"custom-button w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
                     <span className={"font-[500] text-[14px]"}>Выберите блюдо дня</span>
