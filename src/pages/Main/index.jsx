@@ -5,7 +5,7 @@ import sun from "../../assets/svg/sun.svg";
 import clouds from "../../assets/gif/clouds.gif";
 import gif from "../../assets/gif/cat.gif";
 import catStatick from "../../assets/img/catStatick.png";
-import {useTonAddress} from "@tonconnect/ui-react";
+import {useTonAddress, useTonWallet} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
@@ -19,9 +19,10 @@ const iconsData = [
 ];
 
 const Main = () => {
+    const wallet = useTonWallet();
+    console.log(wallet,"wallet")
     const userFriendlyAddress = useTonAddress();
     const [isHovered, setIsHovered] = useState(false);
-
     const preloadImages = (imageArray) => {
         imageArray.forEach((src) => {
             const img = new Image();
