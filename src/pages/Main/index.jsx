@@ -34,10 +34,12 @@ const Main = () => {
     }, []);
 
     const handleHover = () => {
-        setIsHovered(true);
-        setTimeout(() => {
-            setIsHovered(false);
-        }, 3000);
+        if (!isHovered) {
+            setIsHovered(true);
+            setTimeout(() => {
+                setIsHovered(false);
+            }, 3000);
+        }
     };
 
     return (
