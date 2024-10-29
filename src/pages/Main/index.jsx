@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
 import clouds from "../../assets/gif/clouds.gif";
 import gif from "../../assets/gif/cat.gif";
 import catStatick from "../../assets/img/catStatick.png";
-import { useTonAddress } from "@tonconnect/ui-react";
+import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import WalletButton from "../../components/contents/WalletButton";
 
 const iconsData = [
-    { time: '13:21', icon: 'fish-icon' },
-    { time: '14:30', icon: 'fish-icon' },
-    { time: '15:45', icon: 'fish-icon' },
-    { time: '16:10', icon: 'fish-icon' }
+    {time: '13:21', icon: 'fish-icon'},
+    {time: '14:30', icon: 'fish-icon'},
+    {time: '15:45', icon: 'fish-icon'},
+    {time: '16:10', icon: 'fish-icon'}
 ];
 
 const Main = () => {
@@ -30,7 +30,7 @@ const Main = () => {
     };
 
     useEffect(() => {
-        preloadImages([cat, bg, sun, clouds]);
+        preloadImages([cat, bg, sun, clouds, gif, catStatick]);
     }, []);
 
     const handleHover = () => {
@@ -77,8 +77,8 @@ const Main = () => {
                     <span className={"font-[500] text-[14px] text-white/75"}>Осталось: 2 часа</span>
                 </Link>
                 <div className={"w-full z-[800] justify-between flex h-[42px]"}>
-                    <WalletButton />
-                    <QuestionModal />
+                    <WalletButton/>
+                    <QuestionModal/>
                 </div>
                 {userFriendlyAddress &&
                     <div className={"w-full flex h-auto my-auto  justify-end"}>
@@ -92,7 +92,7 @@ const Main = () => {
                             />
                             {iconsData.map((item, index) => (
                                 <div key={index} className={"relative h-[70px] z-0 w-full"}>
-                                    <Icon width={42} height={57} name={item.icon} />
+                                    <Icon width={42} height={57} name={item.icon}/>
                                     <div
                                         className={"w-full bg-[#2B93A7] text-white font-[500] text-[10px] h-[15px] rounded-b-[119px] absolute bottom-[0px] flex items-center justify-center"}>
                                         {item.time}
