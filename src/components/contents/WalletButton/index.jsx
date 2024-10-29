@@ -29,7 +29,7 @@ function WalletButton() {
             ) : (
                 <button
                     onClick={toggleMenu}
-                    className={`min-w-[101px] flex items-center gap-[8px] h-[32px] text-white justify-center px-[22px] rounded-[10px] ${isMenuOpen && "rounded-b-none"} bg-black`}
+                    className={`min-w-[101px] flex items-center gap-[8px] h-full text-white justify-center px-[22px] rounded-[10px] ${isMenuOpen && "rounded-b-none"} bg-black`}
                 >
                     <Icon width={18} height={18} name={"ton"}/>
                     <span className="font-[700] text-[14px]">0.00</span>
@@ -50,7 +50,7 @@ function WalletButton() {
                         zIndex: 10,
                     }}
                 >
-                    <div className="h-[32px] flex items-center justify-center  ">
+                    <div className="h-[42px] flex items-center justify-center  ">
                         <Link to={"/wallet"} className="text-[#D7D7D7] text-[12px]">Кошелек</Link>
                     </div>
                 </animated.div>
