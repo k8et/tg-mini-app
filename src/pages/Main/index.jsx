@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
@@ -20,6 +20,17 @@ const iconsData = [
 const Main = () => {
     const userFriendlyAddress = useTonAddress();
     const [isCatAnimated, setIsCatAnimated] = useState(false);
+    const preloadImages = (imageArray) => {
+        imageArray.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    };
+
+    useEffect(() => {
+        preloadImages([cat, bg, sun, clouds, catGif]);
+    }, []);
+
     const handleCatClick = () => {
         console.log("Cat clicked");
         setIsCatAnimated(true);
@@ -39,22 +50,23 @@ const Main = () => {
                 backgroundSize: 'cover, 203px 223px, cover'
             }}
             className={`w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]`}>
-            {isCatAnimated ?
+            {isCatAnimated ? (
                 <img
-                    className="absolute -mb-[93px] left-[20px] z-[100]"
+                    className="absolute -mb-[15vh] left-[5vw] z-[100] max-w-full h-auto"
                     src={catGif}
                     alt="Cat Animation"
                 />
-                :
+            ) : (
                 <img
-                    className="absolute  -mb-[20px] z-[100]"
-                    src={isCatAnimated ? catGif : cat}
+                    width={310}
+                    className="absolute -mb-[4vh] left-[8vw] z-[100] max-w-full h-auto"
+                    src={cat}
                     alt="Cat"
                     onClick={handleCatClick}
                 />
-            }
+            )}
             <div className="!z-[99] h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-                <Link
+            <Link
                     to={"/dish"}
                     className={"custom-button w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
                     <span className={"font-[500] text-[14px]"}>Выберите блюдо дня</span>
