@@ -60,11 +60,11 @@ const ModalWindow = ({children, closeWindow, className}) => {
             ref={background}
             onMouseDown={handleMouseDown}
             onClick={handleClick}
-            className="background-modal fixed inset-0 bg-modal overflow-hidden flex justify-center items-center flex-col text-white z-[9999]"
+            className="background-modal fixed inset-0 bg-black/20 px-3 overflow-hidden flex justify-center items-center flex-col text-white z-[9999]"
         >
             <div
                 ref={modalContent}
-                className={`p-6 rounded-[15px] bg-white w-full flex flex-col gap-4 overflow-hidden ${
+                className={`rounded-[15px] bg-[#181818] w-full flex flex-col gap-4 overflow-hidden ${
                     className ? " " + className : ""
                 }`}
             >

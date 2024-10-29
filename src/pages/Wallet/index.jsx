@@ -4,6 +4,7 @@ import Tabs from "../../components/commons/Tabs";
 import Input from "../../components/commons/Input";
 import Button from "../../components/commons/Button";
 import WalletItem from "../../components/contents/WalletItemContent";
+import AcceptModal from "../../components/ui/modals/AcceptModal";
 
 const Wallet = () => {
     const [activeTab, setActiveTab] = useState('withdraw');
@@ -33,46 +34,63 @@ const Wallet = () => {
 
             <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab}/>
 
-            <form className={"bg-[#151515] w-full h-auto rounded-[10px] py-[16px] px-[12px] gap-[12px] flex flex-col"}>
-                <Input className={"!bg-[#101010] !h-[40px]"} placeholder={"Введите сумму..."}
-                       label={"Пополнение баланса"} value={""} name={""}/>
-                <Button>Вывести</Button>
-            </form>
+
 
             {activeTab === "withdraw" &&
-                <div style={{height: 'calc(100vh - 416px)'}}
-                     className="scrol-hidden bg-[#151515] rounded-[10px] py-[16px] px-[12px] mt-[12px] space-y-4 overflow-x-hidden overflow-y-auto">
-                    <div className="flex flex-col space-y-2 ">
-                        <label className={"text-[12px] font-[400] text-[#D7D7D766]/40"}>История выводов</label>
-                        {fakeData.map((item, index) => (
-                            <WalletItem
-                                key={index}
-                                date={item.date}
-                                time={item.time}
-                                amount={item.amount}
-                                index={index}
-                            />
-                        ))}
+                <>
+                    <div
+                        className={"bg-[#151515] w-full h-auto rounded-[10px] py-[16px] px-[12px] gap-[12px] flex flex-col"}>
+                        <Input className={"!bg-[#101010] !h-[40px]"} placeholder={"Введите сумму..."}
+                               label={"Вывод баланса"} value={""} name={""}/>
+                        <AcceptModal>
+                            <Button type={"button"}>Вывести</Button>
+                        </AcceptModal>
                     </div>
-                </div>
+                    <div style={{height: 'calc(100vh - 416px)'}}
+                         className="scrol-hidden bg-[#151515] rounded-[10px] py-[16px] px-[12px] mt-[12px] space-y-4 overflow-x-hidden overflow-y-auto">
+                        <div className="flex flex-col space-y-2 ">
+                            <label className={"text-[12px] font-[400] text-[#D7D7D766]/40"}>История выводов</label>
+                            {fakeData.map((item, index) => (
+                                <WalletItem
+                                    key={index}
+                                    date={item.date}
+                                    time={item.time}
+                                    amount={item.amount}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </>
+
             }
 
             {activeTab === "topup" &&
-                <div style={{height: 'calc(100vh - 416px)'}}
-                     className="scrol-hidden bg-[#151515] rounded-[10px] py-[16px] px-[12px] mt-[12px] space-y-4 overflow-x-hidden overflow-y-auto">
-                    <div className="flex flex-col space-y-2 ">
-                        <label className={"text-[12px] font-[400] text-[#D7D7D766]/40"}>История пополнений</label>
-                        {fakeData.map((item, index) => (
-                            <WalletItem
-                                key={index}
-                                date={item.date}
-                                time={item.time}
-                                amount={item.amount}
-                                index={index}
-                            />
-                        ))}
+                <>
+                    <div
+                        className={"bg-[#151515] w-full h-auto rounded-[10px] py-[16px] px-[12px] gap-[12px] flex flex-col"}>
+                        <Input className={"!bg-[#101010] !h-[40px]"} placeholder={"Введите сумму..."}
+                               label={"Пополнение баланса"} value={""} name={""}/>
+                        <AcceptModal>
+                            <Button type={"button"}>Пополнить</Button>
+                        </AcceptModal>
                     </div>
-                </div>
+                    <div style={{height: 'calc(100vh - 416px)'}}
+                         className="scrol-hidden bg-[#151515] rounded-[10px] py-[16px] px-[12px] mt-[12px] space-y-4 overflow-x-hidden overflow-y-auto">
+                        <div className="flex flex-col space-y-2 ">
+                            <label className={"text-[12px] font-[400] text-[#D7D7D766]/40"}>История пополнений</label>
+                            {fakeData.map((item, index) => (
+                                <WalletItem
+                                    key={index}
+                                    date={item.date}
+                                    time={item.time}
+                                    amount={item.amount}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </>
             }
 
         </div>

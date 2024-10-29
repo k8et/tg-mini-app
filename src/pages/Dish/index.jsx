@@ -147,7 +147,7 @@ const Dish = () => {
                 {isModalVisible && (
                     <animated.div style={modalSpring}
                                   className="w-full bg-[#181818] text-white rounded-[10px] py-[16px] px-[12px] flex flex-col gap-[6px] fixed bottom-0 left-0 z-50">
-                        <h1 className="font-[500] text-[16px]">Подтвердите выбор</h1>
+                        <h1 className="font-[500] text-[18px]">Подтвердите выбор</h1>
                         <div className="flex items-center gap-1">
                             Баланс:
                             <span className="flex items-center gap-1">
@@ -156,7 +156,7 @@ const Dish = () => {
                             </span>
                         </div>
                         <Input
-                            className="mt-[5px]"
+                            className="mt-[5px] h-[40px] placeholder:!text-[14px] !text-[14px]"
                             type="number"
                             error={errors.sum}
                             onChange={handlerChange}
@@ -166,13 +166,13 @@ const Dish = () => {
                         />
                         <div className="flex w-full mt-[10px] gap-[6px]">
                             <Button
-                                className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[12px] text-white" : " text-white !text-[12px]"}
+                                className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[16px] text-white !h-[40px]" : " text-white !h-[40px] !text-[16px]"}
                                 disabled={!isValid}
                                 onClick={handlerSubmit}
                             >
                                 Сделать ставку
                             </Button>
-                            <Button className="bg-[#1D1D1D] !text-[12px]" onClick={handlerToggleModal}>
+                            <Button className="bg-[#1D1D1D] !text-[16px]" onClick={handlerToggleModal}>
                                 Отмена
                             </Button>
                         </div>

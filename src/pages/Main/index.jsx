@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
 import clouds from "../../assets/gif/clouds.gif";
+import catGif from "../../assets/gif/cat.gif";
 import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
@@ -18,7 +19,12 @@ const iconsData = [
 
 const Main = () => {
     const userFriendlyAddress = useTonAddress();
-
+    const [isCatAnimated, setIsCatAnimated] = useState(false);
+    const handleCatClick = () => {
+        console.log("Cat clicked");
+        setIsCatAnimated(true);
+        setTimeout(() => setIsCatAnimated(false), 3000);
+    };
     return (
         <div
             style={{
@@ -32,9 +38,22 @@ const Main = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover, 203px 223px, cover'
             }}
-            className="w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]">
-            <img className="absolute -mb-[20px] z-[100]" src={cat} alt="Cat"/>
-            <div className="!z-[999] h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
+            className={`w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]`}>
+            {isCatAnimated ?
+                <img
+                    className="absolute -mb-[93px] left-[20px] z-[100]"
+                    src={catGif}
+                    alt="Cat Animation"
+                />
+                :
+                <img
+                    className="absolute  -mb-[20px] z-[100]"
+                    src={isCatAnimated ? catGif : cat}
+                    alt="Cat"
+                    onClick={handleCatClick}
+                />
+            }
+            <div className="!z-[99] h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
                 <Link
                     to={"/dish"}
                     className={"custom-button w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
