@@ -64,7 +64,7 @@ const Main = () => {
             ) : (
                 <img
                     width={300}
-                    className="absolute -bottom-[20px] z-[100] max-w-full h-auto"
+                    className="absolute -bottom-[20px]  z-[100] max-w-full h-auto"
                     src={cat}
                     alt="Cat"
                 />
@@ -83,7 +83,7 @@ const Main = () => {
                 {userFriendlyAddress &&
                     <div className={"w-full flex h-auto my-auto  justify-end"}>
                         <div
-                            className={"relative h-auto w-[42px] z-[800]  flex flex-col gap-[5px] items-center justify-center"}>
+                            className={"relative h-auto w-[42px] z-[200]  flex flex-col gap-[5px] items-center justify-center"}>
                             <div
                                 style={{
                                     background: 'linear-gradient(180.22deg, rgba(0, 0, 0, 0.6) 0.19%, rgba(0, 0, 0, 0) 50.51%)'
