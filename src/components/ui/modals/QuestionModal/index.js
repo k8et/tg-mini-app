@@ -59,7 +59,7 @@ const QuestionModal = () => {
             {isOpenModal && (
                 <ModalWindow
                     closeWindow={handlerToggleModal}
-                    className={"h-screen !w-screen !rounded-none !bg-[#101010] !p-0"}
+                    className={"h-screen !w-screen !rounded-none !bg-[#101010] !z-[9999] !p-0"}
                 >
                     <div className={"my-auto"}>
                         <Swiper
