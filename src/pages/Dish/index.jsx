@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import bg from "../../assets/svg/fishBg.svg";
-import fishCard from "../../assets/svg/fishCard.svg";
-import fish from "../../assets/svg/fish.svg";
+import fishCardBg from "../../assets/img/fishCardBg.png";
+import fish from "../../assets/img/fish.png"
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css/effect-cards";
 import 'swiper/css/pagination';
@@ -77,7 +76,7 @@ const Dish = () => {
     return (
         <div
             style={{
-                backgroundImage: `url('${bg}')`,
+                backgroundImage: `url('${fishCardBg}')`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
@@ -104,7 +103,7 @@ const Dish = () => {
                             <SwiperSlide key={index} className="border border-white rounded-[20px]">
                                 <div
                                     style={{
-                                        backgroundImage: `url('${fishCard}')`,
+                                        backgroundImage: `url('${fishCardBg}')`,
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
                                         backgroundSize: 'cover'

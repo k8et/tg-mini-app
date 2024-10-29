@@ -2,7 +2,8 @@ import React from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
-import { useTonAddress} from "@tonconnect/ui-react";
+import clouds from "../../assets/gif/clouds.gif";
+import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
@@ -25,11 +26,11 @@ const Main = () => {
                 backgroundImage: `
             url('${bg}'),     
             url('${sun}'),    
-            url('')   
+            url('${clouds}')   
         `,
-                backgroundPosition: 'center top 35px, right top, center bottom -20px',
+                backgroundPosition: 'center top 0px, right top, right top 20px',
                 backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover, 203px 223px, auto'
+                backgroundSize: 'cover, 203px 223px, cover'
             }}
             className="w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]">
             <img className="absolute -mb-[20px] z-[100]" src={cat} alt="Cat"/>
