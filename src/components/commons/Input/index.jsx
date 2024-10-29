@@ -29,10 +29,10 @@ const Input = (props) => {
 
     return (
         <label className="flex flex-col w-full">
-            {label && <span className="text-[#ABABB0] mb-1  text-[13px]">{label}</span>}
+            {label && <span className="text-[#D7D7D766]/40 mb-1  text-[12px]">{label}</span>}
             <div className="relative py-[0px] w-full flex gap-[8px] items-center">
                 <input
-                    className={`relative ${error && "border-red-500"} bg-[#1D1D1D] placeholder:text-white/20 text-[12px] font-[500] !text-white border border-black/5 rounded-[10px] h-[30px] px-2 w-full focus:outline-none focus:shadow-none  ${className} ${(icon || symbol) && "pr-6"} ${search && "pl-8"}`}
+                    className={`relative ${error && "border-red-500"} bg-[#1D1D1D] placeholder:text-white/20  placeholder:font-[400] text-[12px] font-[500] !text-white border border-black/5 rounded-[10px] h-[30px] px-2 w-full focus:outline-none focus:shadow-none  ${className} ${(icon || symbol) && "pr-6"} ${search && "pl-8"}`}
                     type={"text"}
                     value={value}
                     onChange={newChange ? newChange : handlerChange}
