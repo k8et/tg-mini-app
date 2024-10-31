@@ -1,6 +1,5 @@
-import {useIsConnectionRestored, useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
-import {useState} from "react";
-
+import { useIsConnectionRestored, useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
+import { useState } from "react";
 
 export const SendTx = () => {
     const isConnectionRestored = useIsConnectionRestored();
@@ -8,8 +7,7 @@ export const SendTx = () => {
     const [tonConnectUI] = useTonConnectUI();
     const [txInProgress, setTxInProgress] = useState(false);
 
-
-    let content
+    let content;
     switch (true) {
         case !isConnectionRestored:
             content = 'Loading...';
@@ -30,7 +28,7 @@ export const SendTx = () => {
         if (!wallet) {
             tonConnectUI.connectWallet();
         } else {
-            setTxInProgress(true)
+            setTxInProgress(true);
             try {
                 await tonConnectUI.sendTransaction({
                     validUntil: Math.floor(Date.now() / 1000) + 360,
@@ -41,17 +39,25 @@ export const SendTx = () => {
                         }
                     ]
                 });
+
+                alert('Транзакция успешно отправлена!');
             } catch (e) {
                 console.log(e);
-            }finally {
-                alert("Успешно))")
+                alert('Ошибка при отправке транзакции. Пожалуйста, попробуйте еще раз.');
             }
 
-            setTxInProgress(false)
+            setTxInProgress(false);
         }
-    }
+    };
 
-    return <button className={"z-[211]"} style={{ marginBottom: '20px' }} disabled={!isConnectionRestored || txInProgress} onClick={onClick}>
-        {content}
-    </button>
-}
+    return (
+        <button
+            className={"z-[211]"}
+            style={{ marginBottom: '20px' }}
+            disabled={!isConnectionRestored || txInProgress}
+            onClick={onClick}
+        >
+            {content}
+        </button>
+    );
+};
