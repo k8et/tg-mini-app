@@ -13,7 +13,7 @@ root.render(
     <React.StrictMode>
         <TonConnectUIProvider
             defaultNetwork="testnet"
-            manifestUrl={`${window.location.origin}/tonconnect-manifest.json`}>
+            manifestUrl={`https://tg-mini-app-ilfx.vercel.app/tonconnect-manifest.json`}>
             <BrowserRouter>
                 <App/>
             </BrowserRouter>

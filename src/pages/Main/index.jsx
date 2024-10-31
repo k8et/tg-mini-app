@@ -4,7 +4,7 @@ import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
 import clouds from "../../assets/gif/clouds.gif";
 import gif from "../../assets/gif/cat.gif";
-import {TonConnect, useTonAddress, useTonWallet} from "@tonconnect/ui-react";
+import {TonConnect, useTonAddress, useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
@@ -17,9 +17,10 @@ const iconsData = [
     {time: '15:45', icon: 'fish-icon'},
     {time: '16:10', icon: 'fish-icon'}
 ];
-const tonConnect = new TonConnect();
 const Main = () => {
         const wallet = useTonWallet();
+        const [tonConnectUI] = useTonConnectUI();
+        const [txInProgress, setTxInProgress] = useState(false);
         console.log(wallet, "wallet")
         const userFriendlyAddress = useTonAddress();
         const [isHovered, setIsHovered] = useState(false);
@@ -33,26 +34,28 @@ const Main = () => {
                 }, 3000);
             }
         };
-    const sendTransaction = async () => {
-        if (!tonConnect.connected) {
-            alert('Подключите кошелек сначала');
-            return;
-        }
+        const onClick = async () => {
+            if (!wallet) {
+                tonConnectUI.connectWallet();
+            } else {
+                setTxInProgress(true)
+                try {
+                    await tonConnectUI.sendTransaction({
+                        validUntil: Math.floor(Date.now() / 1000) + 360,
+                        messages: [
+                            {
+                                amount: '1000000',
+                                address: '0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F'
+                            }
+                        ]
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
 
-        try {
-            const transaction = {
-                to: '<адрес получателя>', // Замените на адрес получателя
-                value: '0.01', // Тестовая сумма в TON
-                data: '',
-            };
-
-            await tonConnect.sendTransaction(transaction);
-            alert('Транзакция успешно отправлена');
-        } catch (error) {
-            console.error('Ошибка транзакции', error);
-            alert('Не удалось отправить транзакцию');
+                setTxInProgress(false)
+            }
         }
-    };
 
         if (isLoading) return <div className={"h-screen bg-black fixed w-screen"}></div>
 
@@ -89,7 +92,9 @@ const Main = () => {
                 ) : null}
 
                 <div className=" h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-                    <button className={"z-[800]"} onClick={sendTransaction}>Отправить тестовую транзакцию</button>
+                    {/*<button onClick={onClick} className={"z-[888]"}>*/}
+                    {/*    Send*/}
+                    {/*</button>*/}
                     <Link
                         to={"/dish"}
                         className={"custom-button z-[800] w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
