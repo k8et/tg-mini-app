@@ -4,12 +4,13 @@ import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/svg/sun.svg";
 import clouds from "../../assets/gif/clouds.gif";
 import gif from "../../assets/gif/cat.gif";
-import {TonConnect, useTonAddress, useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
+import { useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
 import WalletButton from "../../components/contents/WalletButton";
 import useImagePreloader from "../../hooks/useImagePreloader";
+import {SendTx} from "../../utils/send";
 
 const iconsData = [
     {time: '13:21', icon: 'fish-icon'},
@@ -18,10 +19,6 @@ const iconsData = [
     {time: '16:10', icon: 'fish-icon'}
 ];
 const Main = () => {
-        const wallet = useTonWallet();
-        const [tonConnectUI] = useTonConnectUI();
-        const [txInProgress, setTxInProgress] = useState(false);
-        console.log(wallet, "wallet")
         const userFriendlyAddress = useTonAddress();
         const [isHovered, setIsHovered] = useState(false);
         const isLoading = useImagePreloader([cat, bg, sun, clouds, gif]);
@@ -34,28 +31,6 @@ const Main = () => {
                 }, 3000);
             }
         };
-        const onClick = async () => {
-            if (!wallet) {
-                tonConnectUI.connectWallet();
-            } else {
-                setTxInProgress(true)
-                try {
-                    await tonConnectUI.sendTransaction({
-                        validUntil: Math.floor(Date.now() / 1000) + 360,
-                        messages: [
-                            {
-                                amount: '1000000',
-                                address: '0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F'
-                            }
-                        ]
-                    });
-                } catch (e) {
-                    console.log(e);
-                }
-
-                setTxInProgress(false)
-            }
-        }
 
         if (isLoading) return <div className={"h-screen bg-black fixed w-screen"}></div>
 
@@ -91,9 +66,7 @@ const Main = () => {
                     )}
 
                 <div className=" h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-                    <button onClick={onClick} className={"z-[888]"}>
-                        Send
-                    </button>
+                    <SendTx/>
                     <Link
                         to={"/dish"}
                         className={"custom-button z-[800] w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>

@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <TonConnectUIProvider
-            defaultNetwork="testnet"
+            // defaultNetwork="testnet"
             manifestUrl={`https://tg-mini-app-ilfx.vercel.app/tonconnect-manifest.json`}>
             <BrowserRouter>
                 <App/>
