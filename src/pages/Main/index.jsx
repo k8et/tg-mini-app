@@ -73,7 +73,7 @@ const Main = () => {
                     backgroundSize: 'cover, 203px 223px, cover'
                 }}
                 className={`w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]`}>
-                {userFriendlyAddress ? (
+                {
                     isHovered ? (
                         <img
                             className="absolute -bottom-[100px] ml-[30px] z-[100]"
@@ -88,8 +88,7 @@ const Main = () => {
                             onClick={handleHover}
                             alt="Cat"
                         />
-                    )
-                ) : null}
+                    )}
 
                 <div className=" h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
                     <button onClick={onClick} className={"z-[888]"}>
