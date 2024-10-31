@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import fishCardBg from "../../assets/img/fishCardBg.png";
 import fishCard from "../../assets/img/fishCard.png";
 import fish from "../../assets/img/fish.png"
@@ -12,6 +12,7 @@ import Input from "../../components/commons/Input";
 import Button from "../../components/commons/Button";
 import useForm from "../../hooks/useForm";
 import {useSpring, animated} from '@react-spring/web';
+import useClickOutside from "../../hooks/useClickOutside";
 
 const slides = [
     {
@@ -48,7 +49,6 @@ const Dish = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isModalVisible, setIsModalVisible] = useState(false);
     let swiperRef = React.useRef(null);
-
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
@@ -74,6 +74,8 @@ const Dish = () => {
         config: {tension: 280, friction: 40},
     });
 
+
+
     return (
         <div
             style={{
@@ -82,9 +84,9 @@ const Dish = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
             }}
-            className="w-screen h-full overflow-x-hidden  relative flex items-end justify-center bg-[#101010]">
+            className={`w-screen h-full relative flex overflow-x-hidden  items-end justify-center bg-[#101010] `}>
             <div
-                className="z-[999] pt-[30px] pb-[5px] h-full    w-full flex flex-col justify-center px-[12px] gap-[6px]">
+                className="z-[900] pt-[30px] pb-[5px] h-full    w-full flex flex-col justify-center px-[12px] gap-[6px]">
                 <h1 className="font-[700] text-white text-[22px] text-center">
                     Выберите ваше <br/><span className="text-[#0098EA]">блюдо</span> дня!
                 </h1>
@@ -101,7 +103,7 @@ const Dish = () => {
                         }}
                     >
                         {slides.map((slide, index) => (
-                            <SwiperSlide key={index} className="border border-white rounded-[20px]">
+                            <SwiperSlide key={index} className="border  border-white rounded-[20px]">
                                 <div
                                     style={{
                                         backgroundImage: `url('${fishCard}')`,
@@ -145,38 +147,41 @@ const Dish = () => {
                 <Button onClick={handlerToggleModal}>Выбрать</Button>
 
                 {isModalVisible && (
-                    <animated.div style={modalSpring}
-                                  className="w-full bg-[#181818] text-white rounded-[10px] py-[16px] px-[12px] flex flex-col gap-[6px] fixed bottom-0 left-0 z-50">
-                        <h1 className="font-[500] text-[18px]">Подтвердите выбор</h1>
-                        <div className="flex items-center gap-1">
-                            Баланс:
-                            <span className="flex items-center gap-1">
+                    <div className={"fixed top-0 right-0 h-full z-[999]"}>
+                        <animated.div
+                            style={modalSpring}
+                            className="w-full bg-[#181818] text-white rounded-[10px] py-[16px] px-[12px] flex flex-col gap-[6px] fixed  bottom-0 left-0 z-50">
+                            <h1 className="font-[500] text-[18px]">Подтвердите выбор</h1>
+                            <div className="flex items-center gap-1">
+                                Баланс:
+                                <span className="flex items-center gap-1">
                                 <Icon width={12} height={12} name={"ton"}/>
                                 0.00
                             </span>
-                        </div>
-                        <Input
-                            className="mt-[5px] h-[40px] placeholder:!text-[14px] !text-[14px]"
-                            type="number"
-                            error={errors.sum}
-                            onChange={handlerChange}
-                            value={form.sum}
-                            name="sum"
-                            placeholder="Укажите сумму ставки"
-                        />
-                        <div className="flex w-full mt-[10px] gap-[6px]">
-                            <Button
-                                className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[16px] text-white !h-[40px]" : " text-white !h-[40px] !text-[16px]"}
-                                disabled={!isValid}
-                                onClick={handlerSubmit}
-                            >
-                                Сделать ставку
-                            </Button>
-                            <Button className="bg-[#1D1D1D] !text-[16px]" onClick={handlerToggleModal}>
-                                Отмена
-                            </Button>
-                        </div>
-                    </animated.div>
+                            </div>
+                            <Input
+                                className="mt-[5px] h-[40px] placeholder:!text-[14px] !text-[14px]"
+                                type="number"
+                                error={errors.sum}
+                                onChange={handlerChange}
+                                value={form.sum}
+                                name="sum"
+                                placeholder="Укажите сумму ставки"
+                            />
+                            <div className="flex w-full mt-[10px] gap-[6px]">
+                                <Button
+                                    className={(!isValid || form.sum.length === 0) ? "!bg-[#1D1D1D] !text-[16px] text-white !h-[40px]" : " text-white !h-[40px] !text-[16px]"}
+                                    disabled={!isValid}
+                                    onClick={handlerSubmit}
+                                >
+                                    Сделать ставку
+                                </Button>
+                                <Button className="bg-[#1D1D1D] !text-[16px]" onClick={handlerToggleModal}>
+                                    Отмена
+                                </Button>
+                            </div>
+                        </animated.div>
+                    </div>
                 )}
             </div>
         </div>
