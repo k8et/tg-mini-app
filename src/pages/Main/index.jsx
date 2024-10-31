@@ -92,9 +92,9 @@ const Main = () => {
                 ) : null}
 
                 <div className=" h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-                    {/*<button onClick={onClick} className={"z-[888]"}>*/}
-                    {/*    Send*/}
-                    {/*</button>*/}
+                    <button onClick={onClick} className={"z-[888]"}>
+                        Send
+                    </button>
                     <Link
                         to={"/dish"}
                         className={"custom-button z-[800] w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
