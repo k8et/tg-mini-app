@@ -43,6 +43,8 @@ export const SendTx = () => {
                 });
             } catch (e) {
                 console.log(e);
+            }finally {
+                alert("Успешно))")
             }
 
             setTxInProgress(false)
