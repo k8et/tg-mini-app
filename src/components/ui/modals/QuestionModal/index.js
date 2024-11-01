@@ -75,11 +75,11 @@ const QuestionModal = () => {
                                 <SwiperSlide key={index} className="text-center flex flex-col items-center">
                                     <h2 className="text-white text-2xl">{slide.title}</h2>
                                     <img
-                                        style={{width: 'calc(100vw - 150px)', height: 'auto'}}
-                                        className="mx-auto mt-[40px] max-w-[254px] mb-[20px]"
+                                        className="mx-auto mt-[40px] mb-[20px] max-w-full h-[50vh] object-contain"
                                         src={screen1}
                                         alt="screen"
                                     />
+
                                     <p className="text-white/75 max-w-[291px] mx-auto">{slide.text}</p>
                                 </SwiperSlide>
                             ))}
