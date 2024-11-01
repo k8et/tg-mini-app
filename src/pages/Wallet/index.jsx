@@ -5,6 +5,7 @@ import Input from "../../components/commons/Input";
 import Button from "../../components/commons/Button";
 import WalletItem from "../../components/contents/WalletItemContent";
 import AcceptModal from "../../components/ui/modals/AcceptModal";
+import QuestionWalletModal from "../../components/ui/modals/QuestionWalletModal";
 
 const Wallet = () => {
     const [activeTab, setActiveTab] = useState('withdraw');
@@ -92,7 +93,9 @@ const Wallet = () => {
                     </div>
                 </>
             }
-
+            <div className={"absolute top-[20px] right-[20px]"}>
+                <QuestionWalletModal/>
+            </div>
         </div>
     );
 };
