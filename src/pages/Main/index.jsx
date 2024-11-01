@@ -1,5 +1,5 @@
 import React, {memo, useState} from 'react';
-import cat from "../../assets/svg/cat.svg";
+import cat from "../../assets/img/catMain.png";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/img/sun.png";
 import clouds from "../../assets/gif/clouds.gif";

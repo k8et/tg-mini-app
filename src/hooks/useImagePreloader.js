@@ -1,35 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from "react";
 
-const useImagePreloader = (imageArray) => {
-    const [isLoading, setIsLoading] = useState(true);
-
+const useImagePreloader = (imageUrls) => {
     useEffect(() => {
-        let loadedImagesCount = 0;
+        const images = imageUrls.map((url) => {
+            const img = new Image();
+            img.src = url;
+            return img;
+        });
 
-        const handleImageLoad = () => {
-            loadedImagesCount += 1;
-            if (loadedImagesCount === imageArray.length) {
-                setIsLoading(false);
-            }
-        };
-
-        const preloadImages = (images) => {
-            images.forEach((src) => {
-                const img = new Image();
-                img.src = src;
-                img.onload = handleImageLoad;
-                img.onerror = handleImageLoad;
-            });
-        };
-
-        if (imageArray && imageArray.length > 0) {
-            preloadImages(imageArray);
-        } else {
-            setIsLoading(false);
-        }
-    }, [imageArray]);
-
-    return isLoading;
+        // Clean up function to release images if needed
+        return () => images.forEach(img => img.src = '');
+    }, [imageUrls]);
 };
 
 export default useImagePreloader;
