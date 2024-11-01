@@ -1,13 +1,20 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import { useSpring, animated } from "@react-spring/web";
 
-const ModalWindow = ({children, closeWindow, className}) => {
+const ModalWindow = ({ children, closeWindow, className }) => {
     const background = useRef(null);
     const modalContent = useRef(null);
     const [mouseDownPosition, setMouseDownPosition] = useState(null);
 
+    const modalSpring = useSpring({
+        transform: "translateY(0%)",
+        from: { transform: "translateY(100%)" },
+        config: { tension: 280, friction: 40 },
+    });
+
     const handleMouseDown = (e) => {
-        setMouseDownPosition({x: e.clientX, y: e.clientY});
+        setMouseDownPosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleClick = (e) => {
@@ -62,14 +69,15 @@ const ModalWindow = ({children, closeWindow, className}) => {
             onClick={handleClick}
             className="background-modal fixed inset-0 bg-black/20 px-3 overflow-hidden flex justify-center items-center flex-col text-white z-[9999]"
         >
-            <div
+            <animated.div
                 ref={modalContent}
+                style={modalSpring}
                 className={`rounded-[15px] bg-[#181818] w-full flex flex-col gap-4 overflow-hidden ${
                     className ? " " + className : ""
                 }`}
             >
                 {children}
-            </div>
+            </animated.div>
         </div>
     );
 };

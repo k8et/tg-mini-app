@@ -19,12 +19,12 @@ const AcceptModal = ({children}) => {
                     className={"  "}
                 >
                     <div className={"bg-[#181818] rounded-[10px] p-3"}>
-                        <h1 className={"text-[14px]"}>Подтвердите действие</h1>
+                        <h1 className={"text-[18px]"}>Подтвердите действие</h1>
                         <div className={"flex gap-[6px] mt-[12px]"}>
-                            <Button onClick={handlerToggleModal} className={"!h-[30px] !text-[12px]"}>
+                            <Button onClick={handlerToggleModal} className={"!h-[30px] !text-[16px]"}>
                                 Ок
                             </Button>
-                            <Button onClick={handlerToggleModal} className={"!h-[30px] !bg-[#1D1D1D] !text-[12px] text-[#FFFFFF66]/40"}>
+                            <Button onClick={handlerToggleModal} className={"!h-[30px] !bg-[#1D1D1D] !text-[16px] text-[#FFFFFF66]/40"}>
                                 Отмена
                             </Button>
                         </div>

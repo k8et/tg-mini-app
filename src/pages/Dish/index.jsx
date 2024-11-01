@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useRef, useState} from 'react';
 import fishCardBg from "../../assets/img/fishCardBg.png";
 import fishCard from "../../assets/img/fishCard.png";
 import fish from "../../assets/img/fish.png"
@@ -12,6 +12,7 @@ import Input from "../../components/commons/Input";
 import Button from "../../components/commons/Button";
 import useForm from "../../hooks/useForm";
 import {useSpring, animated} from '@react-spring/web';
+import useClickOutside from "../../hooks/useClickOutside";
 
 const slides = [
     {
@@ -47,7 +48,11 @@ const Dish = () => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    let swiperRef = React.useRef(null);
+    let swiperRef = useRef(null);
+    const modalRef = useRef(null);
+
+    useClickOutside(modalRef, () => setIsModalVisible(false));
+
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
@@ -148,6 +153,7 @@ const Dish = () => {
                 {isModalVisible && (
                     <div className={"fixed top-0 right-0 h-full z-[999] flex w-full  items-center px-3"}>
                         <animated.div
+                            ref={modalRef}
                             style={modalSpring}
                             className="w-full bg-[#181818] text-white rounded-[10px] py-[16px] px-[12px] flex flex-col gap-[6px] z-50">
                             <h1 className="font-[500] text-[18px]">Подтвердите выбор</h1>
