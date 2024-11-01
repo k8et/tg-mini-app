@@ -1,16 +1,15 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import cat from "../../assets/svg/cat.svg";
 import bg from "../../assets/svg/background.svg";
-import sun from "../../assets/svg/sun.svg";
+import sun from "../../assets/img/sun.png";
 import clouds from "../../assets/gif/clouds.gif";
 import gif from "../../assets/gif/cat.gif";
-import { useTonAddress} from "@tonconnect/ui-react";
+import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
 import WalletButton from "../../components/contents/WalletButton";
 import useImagePreloader from "../../hooks/useImagePreloader";
-import {SendTx} from "../../utils/send";
 
 const iconsData = [
     {time: '13:21', icon: 'fish-icon'},
@@ -21,7 +20,7 @@ const iconsData = [
 const Main = () => {
         const userFriendlyAddress = useTonAddress();
         const [isHovered, setIsHovered] = useState(false);
-        const isLoading = useImagePreloader([cat, bg, sun, clouds, gif]);
+        useImagePreloader([cat, bg, sun, clouds, gif]);
 
         const handleHover = () => {
             if (!isHovered) {
@@ -32,7 +31,6 @@ const Main = () => {
             }
         };
 
-        if (isLoading) return <div className={"h-screen bg-black fixed w-screen"}></div>
 
         return (
             <div
@@ -66,7 +64,6 @@ const Main = () => {
                     )}
 
                 <div className=" h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
-                    <SendTx/>
                     <Link
                         to={"/dish"}
                         className={"custom-button z-[800] w-full py-[16px] max-h-[42px] items-center text-white bg-black flex justify-between px-[22px] rounded-[10px]"}>
@@ -111,4 +108,4 @@ const Main = () => {
     }
 ;
 
-export default Main;
+export default memo(Main);
