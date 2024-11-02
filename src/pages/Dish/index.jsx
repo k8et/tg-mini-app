@@ -40,7 +40,7 @@ const Dish = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     let swiperRef = useRef(null);
     const {isOpenModal, handlerToggleModal} = useModal();
-
+    useBackButtonTg(handlerToggleModal, !isOpenModal);
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
