@@ -12,7 +12,7 @@ const useBackButtonTg = (onBack) => {
                 if (onBack) {
                     onBack();
                 } else {
-                    navigate(-1);
+                    navigate("/");
                 }
             };
 
