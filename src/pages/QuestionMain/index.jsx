@@ -11,7 +11,7 @@ const QuestionMain = () => {
     const [isLastSlideViewed, setIsLastSlideViewed] = useState(false);
     let swiperRef = useRef(null);
 
-    useBackButtonTg(() => {});
+    useBackButtonTg();
 
     const handleSlideChange = (swiper) => {
         setCurrentSlide(swiper.activeIndex);
