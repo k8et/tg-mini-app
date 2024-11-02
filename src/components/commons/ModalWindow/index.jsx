@@ -36,30 +36,23 @@ const ModalWindow = ({ children, closeWindow, className }) => {
     };
 
     useEffect(() => {
-        if (window.Telegram.WebApp) {
+        if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
 
-            const handleBackButtonClick = () => {
-                closeWindow();
-            };
+            window.Telegram.WebApp.BackButton.show();
 
-            const setBackButton = () => {
-                window.Telegram.WebApp.BackButton.show();
-                window.Telegram.WebApp.BackButton.onClick(handleBackButtonClick);
-                window.Telegram.WebApp.BackButton.text = "Back";
-            };
-
-            const hideBackButton = () => {
-                window.Telegram.WebApp.BackButton.hide();
-            };
-
-            setBackButton();
-
-            return () => {
-                hideBackButton();
-                window.Telegram.WebApp.BackButton.offClick(handleBackButtonClick);
-            };
+            window.Telegram.WebApp.BackButton.onClick(() => {
+                if (closeWindow) {
+                    closeWindow();
+                }
+            });
         }
+
+        return () => {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.BackButton.hide();
+            }
+        };
     }, [closeWindow]);
 
     return (
@@ -67,7 +60,7 @@ const ModalWindow = ({ children, closeWindow, className }) => {
             ref={background}
             onMouseDown={handleMouseDown}
             onClick={handleClick}
-            className="background-modal fixed inset-0 bg-black/20 px-3 overflow-hidden flex justify-center items-center flex-col text-white z-[9999]"
+            className="background-modal fixed inset-0 bg-black/80 px-3 overflow-hidden flex justify-center items-center flex-col text-white z-[9999]"
         >
             <animated.div
                 ref={modalContent}

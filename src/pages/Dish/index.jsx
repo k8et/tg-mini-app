@@ -151,7 +151,7 @@ const Dish = () => {
                 <Button onClick={handlerToggleModal}>Выбрать</Button>
 
                 {isModalVisible && (
-                    <div className={"fixed top-0 right-0 h-full z-[999] flex w-full  items-center px-3"}>
+                    <div className={"fixed top-0 right-0 h-full z-[999] flex w-full bg-black/80  items-center px-3"}>
                         <animated.div
                             ref={modalRef}
                             style={modalSpring}
