@@ -2,6 +2,7 @@ import React from 'react';
 import useForm from "../../../../hooks/useForm";
 import Icon from "../../../commons/Icon";
 import Button from "../../../commons/Button";
+import useModal from "../../../../hooks/useModal";
 import ModalWindow from "../../../commons/ModalWindow";
 import Input from "../../../commons/Input";
 
@@ -9,8 +10,8 @@ const initialForm = {sum: ""};
 const validation = {sum: {isRequired: ''}};
 
 
-const DishChoseModal = ({handlerToggleModal,isOpenModal}) => {
-
+const DishChoseModal = () => {
+    const {isOpenModal, handlerToggleModal} = useModal();
     const {form, errors, handlerSubmit, handlerChange, isValid} = useForm({
         data: initialForm,
         validation,
