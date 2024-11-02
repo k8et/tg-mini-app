@@ -16,7 +16,9 @@ const Friends = () => {
 
     const handleInviteFriend = () => {
         const inviteMessage = "@mmxmhmcf_bot";
-        window.open(inviteMessage);
+        const encodedMessage = encodeURIComponent(inviteMessage);
+        const telegramLink = `tg://msg?text=${encodedMessage}`;
+        window.open(telegramLink);
     };
 
     return (
