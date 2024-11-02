@@ -5,20 +5,19 @@ import CopyButton from "../../components/commons/CopyButton";
 
 const Friends = () => {
     const fakeData = [
-        {year: "2019", username: "@pustoy_lzt", points: 10},
-        {year: "2020", username: "@example_user", points: 20},
-        {year: "2020", username: "@example_user", points: 20},
-        {year: "2020", username: "@example_user", points: 20},
-        {year: "2020", username: "@example_user", points: 20},
-        {year: "2020", username: "@example_user", points: 20},
-        {year: "2021", username: "@another_user", points: 15},
+        { year: "2019", username: "@pustoy_lzt", points: 10 },
+        { year: "2020", username: "@example_user", points: 20 },
+        { year: "2021", username: "@another_user", points: 15 },
     ];
 
+    // Функция для отправки сообщения боту
     const handleInviteFriend = () => {
-        const inviteMessage = "@mmxmhmcf_bot";
-        const encodedMessage = encodeURIComponent(inviteMessage);
-        const telegramLink = `tg://msg?text=${encodedMessage}`;
-        window.open(telegramLink);
+        if (window.Telegram.WebApp) {
+            // Проверка, что приложение открыто в Telegram Web App
+            window.Telegram.WebApp.openTelegramLink("@mmxmhmcf_bot");
+        } else {
+            alert("Запустите приложение в Telegram для отправки сообщения.");
+        }
     };
 
     return (
@@ -32,27 +31,27 @@ const Friends = () => {
         >
             <div className="flex items-center justify-center my-[38px]">
                 <div className="flex items-center space-x-2">
-                    <h1 className={"font-[700] text-[22px]"}>
-                        Получай <span className={"text-[#44BDFF]"}>15%</span> от <br/>
+                    <h1 className="font-[700] text-[22px]">
+                        Получай <span className="text-[#44BDFF]">15%</span> от <br />
                         дохода друзей
                     </h1>
                 </div>
             </div>
             <div className="w-full h-[63px] bg-[#151515] rounded-[10px] flex px-[16px] items-center justify-center">
-                <div className={"h-[32px] w-full gap-[6px] flex"}>
+                <div className="h-[32px] w-full gap-[6px] flex">
                     <button
-                        className={"h-full w-full bg-[#0098EA] rounded-[10px] font-[400]"}
+                        className="h-full w-full bg-[#0098EA] rounded-[10px] font-[400]"
                         onClick={handleInviteFriend}
                     >
                         Пригласить друга
                     </button>
-                    <CopyButton textToCopy={"content"}/>
+                    <CopyButton textToCopy="@mmxmhmcf_bot" />
                 </div>
             </div>
-            <div style={{height: 'calc(100vh - 315px)'}}
-                 className="scrol-hidden space-y-[6px] overflow-x-hidden mt-[6px] overflow-y-auto">
+            <div style={{ height: 'calc(100vh - 315px)' }}
+                 className="scroll-hidden space-y-[6px] overflow-x-hidden mt-[6px] overflow-y-auto">
                 {fakeData.map((item, index) => (
-                    <FriendItem key={index} item={item} index={index}/>
+                    <FriendItem key={index} item={item} index={index} />
                 ))}
             </div>
         </div>
