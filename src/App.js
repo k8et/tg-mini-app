@@ -16,20 +16,6 @@ function App() {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.setHeaderColor('#000000');
-
-            window.Telegram.WebApp.onEvent('backButtonClicked', async () => {
-                const result = await window.Telegram.WebApp.showPopup({
-                    title: "Вы действительно хотите закрыть приложение?",
-                    buttons: [
-                        { id: "share", type: "default", text: "Да" },
-                        { id: "cancel", type: "destructive", text: "Отмена" }
-                    ]
-                });
-
-                if (result.button_id === "share") {
-                    window.Telegram.WebApp.close();
-                }
-            });
         }
     }, []);
     return (
