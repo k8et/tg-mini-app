@@ -6,9 +6,12 @@ import Button from "../../components/commons/Button";
 import WalletItem from "../../components/contents/WalletItemContent";
 import AcceptModal from "../../components/ui/modals/AcceptModal";
 import QuestionWalletModal from "../../components/ui/modals/QuestionWalletModal";
+import useBackButtonTg from "../../hooks/useBackButtonTg";
 
 const Wallet = () => {
     const [activeTab, setActiveTab] = useState('withdraw');
+
+    useBackButtonTg(() => {});
 
     const fakeData = Array.from({length: 10}, (_, index) => ({
         date: '01.01.2024',

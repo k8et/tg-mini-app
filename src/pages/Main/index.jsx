@@ -6,7 +6,6 @@ import clouds from "../../assets/gif/clouds.gif";
 import gif from "../../assets/gif/cat.gif";
 import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
-import QuestionModal from "../../components/ui/modals/QuestionModal";
 import {Link} from "react-router-dom";
 import WalletButton from "../../components/contents/WalletButton";
 import useImagePreloader from "../../hooks/useImagePreloader";
@@ -15,7 +14,9 @@ const iconsData = [
     {time: '13:21', icon: 'fish-icon'},
     {time: '14:30', icon: 'fish-icon'},
     {time: '15:45', icon: 'fish-icon'},
-    {time: '16:10', icon: 'fish-icon'}
+    {time: '15:45', icon: 'fish-icon'},
+    {time: '15:45', icon: 'fish-icon'},
+    {time: '15:45', icon: 'fish-icon'},
 ];
 const Main = () => {
         const userFriendlyAddress = useTonAddress();
@@ -72,34 +73,75 @@ const Main = () => {
                     </Link>
                     <div className={"w-full z-[800] justify-between flex h-[42px]"}>
                         <WalletButton/>
-                        <QuestionModal/>
+                        <Link
+                            to={"/question-main"}
+                            className={"rounded-[10px] custom-button w-[42px] h-[42px] bg-black flex justify-center items-center"}
+                        >
+                            <Icon width={25} height={24} className={"custom-button"} name={"question"}/>
+                        </Link>
                     </div>
                     {userFriendlyAddress &&
                         <div className={"w-full flex h-auto my-auto  justify-end"}>
                             <div
-                                className={"relative h-auto w-[42px] z-[200]  flex flex-col gap-[5px] items-center justify-center"}>
+                                className="relative w-[42px] z-[200]  rounded-[11px] overflow-hidden  h-[294px] flex flex-col gap-[5px] items-center justify-center">
                                 <div
                                     style={{
-                                        background: 'linear-gradient(180.22deg, rgba(0, 0, 0, 0.6) 0.19%, rgba(0, 0, 0, 0) 50.51%)'
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        height: '20px',
+                                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent)',
+                                        zIndex: 10,
+                                        pointerEvents: 'none',
+                                        borderRadius: '11px'
                                     }}
-                                    className={"absolute inset-0 h-full  rounded-[11px] z-10"}
                                 />
-                                {iconsData.map((item, index) => (
-                                    <div key={index} className={"relative h-[70px] z-0 w-full"}>
-                                        <Icon width={42} height={57} name={item.icon}/>
+
+                                <div
+                                    className="relative w-full h-full scrol-hidden overflow-y-auto space-y-[5px] z-0"
+                                    style={{
+                                        height: '294px',
+                                        scrollSnapType: 'y mandatory',
+                                    }}>
+                                    {iconsData.map((item, index) => (
                                         <div
-                                            className={"w-full bg-[#2B93A7] text-white font-[500] text-[10px] h-[15px] rounded-b-[119px] absolute bottom-[0px] flex items-center justify-center"}>
-                                            {item.time}
+                                            key={index}
+                                            className="relative min-h-[70px] w-full"
+                                            style={{
+                                                scrollSnapAlign: 'start',
+                                                minHeight: '70px',
+                                            }}>
+                                            <Icon width={42} height={57} name={item.icon}/>
+                                            <div
+                                                className="absolute bottom-[15px] w-full text-white font-[500] text-[12px] flex items-center justify-center gap-[2px]">
+                                                <span>+2</span>
+                                                <Icon width={9} height={9} name="ton-skeleton"/>
+                                            </div>
+                                            <div
+                                                className="absolute bottom-0 w-full h-[15px] bg-[#2B93A7] text-white font-[500] text-[10px] rounded-b-[119px] flex items-center justify-center">
+                                                {item.time}
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+
+
                                 <div
                                     style={{
-                                        background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0.19%, rgba(0, 0, 0, 0) 50.51%)'
+                                        position: 'absolute',
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        height: '20px',
+                                        background: 'linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent)',
+                                        zIndex: 10,
+                                        pointerEvents: 'none',
+                                        borderRadius: '11px'
                                     }}
-                                    className={"absolute inset-0 h-full  rounded-[11px] z-10"}
                                 />
                             </div>
+
                         </div>
                     }
                 </div>

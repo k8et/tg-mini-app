@@ -1,8 +1,9 @@
 import React, {Suspense, lazy, useEffect} from "react";
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layout";
 
 const Main = lazy(() => import("./pages/Main"));
+const QuestionMain = lazy(() => import("./pages/QuestionMain"));
 const Dish = lazy(() => import("./pages/Dish"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Friends = lazy(() => import("./pages/Friends"));
@@ -16,18 +17,18 @@ function App() {
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.setHeaderColor('#000000');
 
-            window.Telegram.WebApp.onEvent('close', (event) => {
-                window.Telegram.WebApp.showPopup({
+            window.Telegram.WebApp.onEvent('backButtonClicked', async () => {
+                const result = await window.Telegram.WebApp.showPopup({
                     title: "Вы действительно хотите закрыть приложение?",
                     buttons: [
                         { id: "share", type: "default", text: "Да" },
                         { id: "cancel", type: "destructive", text: "Отмена" }
                     ]
-                }).then((result) => {
-                    if (result.button_id === "share") {
-                        window.Telegram.WebApp.close();
-                    }
                 });
+
+                if (result.button_id === "share") {
+                    window.Telegram.WebApp.close();
+                }
             });
         }
     }, []);
@@ -35,12 +36,13 @@ function App() {
         <MainLayout>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/dish" element={<Dish />} />
-                    <Route path="/shop" element={<Shop />} />
-                    <Route path="/friends" element={<Friends />} />
-                    <Route path="/rewards" element={<Rewards />} />
-                    <Route path="/wallet" element={<Wallet />} />
+                    <Route path="/" element={<Main/>}/>
+                    <Route path="/dish" element={<Dish/>}/>
+                    <Route path="/question-main" element={<QuestionMain/>}/>
+                    <Route path="/shop" element={<Shop/>}/>
+                    <Route path="/friends" element={<Friends/>}/>
+                    <Route path="/rewards" element={<Rewards/>}/>
+                    <Route path="/wallet" element={<Wallet/>}/>
                 </Routes>
             </Suspense>
         </MainLayout>
