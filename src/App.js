@@ -1,6 +1,7 @@
 import React, {Suspense, lazy, useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layout";
+import useBackButtonTg from "./hooks/useBackButtonTg";
 
 const Main = lazy(() => import("./pages/Main"));
 const QuestionMain = lazy(() => import("./pages/QuestionMain"));
@@ -11,6 +12,7 @@ const Rewards = lazy(() => import("./pages/Rewards"));
 const Wallet = lazy(() => import("./pages/Wallet"));
 
 function App() {
+    useBackButtonTg();
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();

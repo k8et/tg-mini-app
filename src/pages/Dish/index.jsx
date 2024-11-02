@@ -40,10 +40,7 @@ const Dish = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     let swiperRef = useRef(null);
     const {isOpenModal, handlerToggleModal} = useModal();
-    if (!isOpenModal) {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        useBackButtonTg();
-    }
+
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
