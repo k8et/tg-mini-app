@@ -9,7 +9,7 @@ import QuestionWalletModal from "../../components/ui/modals/QuestionWalletModal"
 import useBackButtonTg from "../../hooks/useBackButtonTg";
 
 const Wallet = () => {
-    const [activeTab, setActiveTab] = useState('withdraw');
+    const [activeTab, setActiveTab] = useState('topup');
 
     useBackButtonTg(() => {});
 
@@ -19,8 +19,8 @@ const Wallet = () => {
         amount: `+${10 + index * 5} TON`,
     }));
     const tabs = [
-        {name: 'withdraw', label: 'Вывод'},
         {name: 'topup', label: 'Пополнения'},
+        {name: 'withdraw', label: 'Вывод'},
     ];
 
     return (
