@@ -16,21 +16,6 @@ function App() {
             window.Telegram.WebApp.expand();
         }
     }, []);
-    // useEffect(() => {
-    //     if (window.Telegram && window.Telegram.WebApp) {
-    //         const themeParams = {
-    //             bg_color: "#000000",
-    //             secondary_bg_color: "#1A1A1A",
-    //             text_color: "#FFFFFF",
-    //         };
-    //
-    //         window.Telegram.WebApp.init({
-    //             theme_params: themeParams
-    //         });
-    //
-    //         window.Telegram.WebApp.expand();
-    //     }
-    // }, []);
     return (
         <MainLayout>
             <Suspense fallback={<div>Loading...</div>}>

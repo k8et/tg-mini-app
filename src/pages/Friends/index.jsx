@@ -14,6 +14,13 @@ const Friends = () => {
         {year: "2021", username: "@another_user", points: 15},
     ];
 
+    const handleInviteFriend = () => {
+        const inviteMessage = "Привет! Приглашаю тебя присоединиться ко мне! Получай 15% от дохода друзей.";
+        const encodedMessage = encodeURIComponent(inviteMessage);
+        const telegramLink = `tg://msg?text=${encodedMessage}`;
+        window.open(telegramLink);
+    };
+
     return (
         <div
             className="w-full h-full bg-[#101010] text-white p-[12px] bg-no-repeat"
@@ -33,7 +40,12 @@ const Friends = () => {
             </div>
             <div className="w-full h-[63px] bg-[#151515] rounded-[10px] flex px-[16px] items-center justify-center">
                 <div className={"h-[32px] w-full gap-[6px] flex"}>
-                    <button className={"h-full w-full bg-[#0098EA] rounded-[10px] font-[400]"}>Пригласить друга</button>
+                    <button
+                        className={"h-full w-full bg-[#0098EA] rounded-[10px] font-[400]"}
+                        onClick={handleInviteFriend}
+                    >
+                        Пригласить друга
+                    </button>
                     <CopyButton textToCopy={"content"}/>
                 </div>
             </div>
