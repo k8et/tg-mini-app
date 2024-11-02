@@ -15,10 +15,8 @@ const Friends = () => {
     ];
 
     const handleInviteFriend = () => {
-        const inviteMessage = "Привет! Приглашаю тебя присоединиться ко мне! Получай 15% от дохода друзей.";
-        const encodedMessage = encodeURIComponent(inviteMessage);
-        const telegramLink = `tg://msg?text=${encodedMessage}`;
-        window.open(telegramLink);
+        const inviteMessage = "@mmxmhmcf_bot";
+        window.open(inviteMessage);
     };
 
     return (
