@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
+import {  useRef, useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
+import useBackButtonTg from "../../../hooks/useBackButtonTg";
 
 const ModalWindow = ({ children, closeWindow, className }) => {
     const background = useRef(null);
@@ -35,25 +35,11 @@ const ModalWindow = ({ children, closeWindow, className }) => {
         setMouseDownPosition(null);
     };
 
-    useEffect(() => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-
-            window.Telegram.WebApp.BackButton.show();
-
-            window.Telegram.WebApp.BackButton.onClick(() => {
-                if (closeWindow) {
-                    closeWindow();
-                }
-            });
+    useBackButtonTg(() => {
+        if (closeWindow) {
+            closeWindow();
         }
-
-        return () => {
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.BackButton.hide();
-            }
-        };
-    }, [closeWindow]);
+    });
 
     return (
         <div
@@ -75,10 +61,5 @@ const ModalWindow = ({ children, closeWindow, className }) => {
     );
 };
 
-ModalWindow.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
-    closeWindow: PropTypes.func.isRequired,
-    className: PropTypes.string,
-};
 
 export default ModalWindow;
