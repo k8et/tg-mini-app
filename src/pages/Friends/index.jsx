@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import bg from "../../assets/img/bg-friend.png";
 import FriendItem from "../../components/contents/FriendsItemsContent";
 import CopyButton from "../../components/commons/CopyButton";
@@ -9,29 +9,13 @@ const Friends = () => {
         { year: "2020", username: "@example_user", points: 20 },
         { year: "2021", username: "@another_user", points: 15 },
     ];
-
     const handleInviteFriend = () => {
-        if (window.Telegram.WebApp && window.Telegram.WebApp.showPopup) {
-            window.Telegram.WebApp.showPopup({
-                title: "Пригласить друга",
-                message: "Пригласите друга и получайте 15% от его дохода!",
-                buttons: [
-                    { id: "share", type: "default", text: "Поделиться с другом" },
-                    { id: "cancel", type: "destructive", text: "Отмена" }
-                ]
-            });
-        }
-    };useEffect(() => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            const webAppVersion = window.Telegram.WebApp.version;
-            console.log("Версия Telegram Web App:", webAppVersion);
+        const inviteMessage = "Привет! Приглашаю тебя присоединиться ко мне! Получай 15% от дохода друзей.";
+        const telegramLink = `https://t.me/share/url?url=${encodeURIComponent(inviteMessage)}`;
 
-            // Вы также можете показать версию на экране
-            alert("Версия Telegram Web App: " + webAppVersion);
-        } else {
-            console.warn("Telegram Web App не найден.");
-        }
-    }, []);
+        window.Telegram.WebApp.openTelegramLink(telegramLink);
+    };
+
 
     return (
         <div
