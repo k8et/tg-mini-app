@@ -11,7 +11,7 @@ import useBackButtonTg from "../../hooks/useBackButtonTg";
 const Wallet = () => {
     const [activeTab, setActiveTab] = useState('topup');
 
-    useBackButtonTg(() => {});
+    useBackButtonTg();
 
     const fakeData = Array.from({length: 10}, (_, index) => ({
         date: '01.01.2024',
