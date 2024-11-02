@@ -9,6 +9,8 @@ import 'swiper/css/navigation';
 import {EffectCards} from "swiper/modules";
 import Icon from "../../components/commons/Icon";
 import DishChoseModal from "../../components/ui/modals/DishChoseModal";
+import useBackButtonTg from "../../hooks/useBackButtonTg";
+import {useNavigate} from "react-router-dom";
 const slides = [
     {
         title: "Горбуша",
@@ -34,6 +36,7 @@ const slides = [
 
 
 const Dish = () => {
+    const navigate = useNavigate();
     const [currentIndex, setCurrentIndex] = useState(0);
     let swiperRef = useRef(null);
 
@@ -54,7 +57,9 @@ const Dish = () => {
         }
     };
 
-
+    useBackButtonTg(() => {
+        navigate(-1);
+    });
     return (
         <div
             style={{
