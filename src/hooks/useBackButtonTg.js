@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const useBackButtonTg = (onBack, shouldShowBackButton) => {
+const useBackButtonTg = (onBack) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (shouldShowBackButton && window.Telegram && window.Telegram.WebApp) {
+        if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.BackButton.show();
 
             const handleBackButtonClick = () => {
                 if (onBack) {
-                    onBack(); // выполняется функция, если она передана
+                    onBack();
                 } else {
-                    navigate(-1); // переходит назад, если функция не передана
+                    navigate(-1);
                 }
             };
 
@@ -24,7 +24,7 @@ const useBackButtonTg = (onBack, shouldShowBackButton) => {
                 window.Telegram.WebApp.BackButton.hide();
             }
         };
-    }, [onBack, navigate, shouldShowBackButton]);
+    }, [onBack, navigate]);
 };
 
 export default useBackButtonTg;
