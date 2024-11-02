@@ -10,6 +10,7 @@ import {EffectCards} from "swiper/modules";
 import Icon from "../../components/commons/Icon";
 import DishChoseModal from "../../components/ui/modals/DishChoseModal";
 import useBackButtonTg from "../../hooks/useBackButtonTg";
+import useModal from "../../hooks/useModal";
 
 const slides = [
     {
@@ -38,9 +39,11 @@ const slides = [
 const Dish = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     let swiperRef = useRef(null);
-
-    useBackButtonTg();
-
+    const {isOpenModal, handlerToggleModal} = useModal();
+    if (!isOpenModal) {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useBackButtonTg();
+    }
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
@@ -126,7 +129,7 @@ const Dish = () => {
                         ))}
                     </div>
                 </div>
-                <DishChoseModal/>
+                <DishChoseModal isOpenModal={isOpenModal} handlerToggleModal={handlerToggleModal}/>
             </div>
         </div>
     );
