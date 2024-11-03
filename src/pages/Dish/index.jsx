@@ -61,6 +61,7 @@ const Dish = () => {
             window.Telegram.WebApp.BackButton.offClick(handleBackButtonClick);
         };
     }, [isOpenModal, navigate, handlerToggleModal]);
+
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
@@ -145,7 +146,7 @@ const Dish = () => {
                         ))}
                     </div>
                 </div>
-                {isOpenModal && <DishChoseModal handlerToggleModal={handlerToggleModal}/>}
+                <DishChoseModal handlerToggleModal={handlerToggleModal} isOpenModal={isOpenModal}/>
             </div>
         </div>
     );
