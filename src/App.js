@@ -15,30 +15,36 @@ function App() {
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
-            window.Telegram.WebApp.setHeaderColor('#000000');
+            window.Telegram.WebApp.setHeaderColor("#000000");
+
+            // Включить подтверждение закрытия приложения
+            window.Telegram.WebApp.enableClosingConfirmation();
+
+            // Обработчик события popupClosed
+            window.Telegram.WebApp.onEvent('popupClosed', (data) => {
+                console.log("Popup was closed", data);
+            });
         }
 
-        const handleBeforeUnload = (event) => {
-            window.Telegram.WebApp.showConfirm(
-                "Changes that you made may not be saved.",
-                (result) => {
-                    if (!result) {
-                        event.preventDefault(); // Отмена закрытия, если пользователь выбрал "Cancel"
-                    } else {
-                        console.log("Confirmed");
-                    }
-                }
-            );
-            // Требуется возврат пустой строки для отображения диалога в некоторых браузерах
-            event.returnValue = '';
-        };
-
-        window.addEventListener("beforeunload", handleBeforeUnload);
-
         return () => {
-            window.removeEventListener("beforeunload", handleBeforeUnload);
+            if (window.Telegram && window.Telegram.WebApp) {
+                // Отключить подтверждение закрытия при размонтировании
+                window.Telegram.WebApp.disableClosingConfirmation();
+            }
         };
     }, []);
+
+    // Функция для показа подтверждения
+    const showConfirmClose = () => {
+        window.Telegram.WebApp.showConfirm("Are you sure you want to leave?", (result) => {
+            if (result) {
+                console.log("User confirmed closing.");
+                // Ваш код для завершения работы приложения
+            } else {
+                console.log("User canceled closing.");
+            }
+        });
+    };
 
     return (
         <MainLayout>
