@@ -2,7 +2,7 @@ import {  useRef, useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import useBackButtonTg from "../../../hooks/useBackButtonTg";
 
-const ModalWindow = ({ children, closeWindow, className }) => {
+const ModalWindow = ({ children, closeWindow, className,disableBackButton }) => {
     const background = useRef(null);
     const modalContent = useRef(null);
     const [mouseDownPosition, setMouseDownPosition] = useState(null);
@@ -39,7 +39,7 @@ const ModalWindow = ({ children, closeWindow, className }) => {
         if (closeWindow) {
             closeWindow();
         }
-    });
+    }, !disableBackButton);
 
     return (
         <div

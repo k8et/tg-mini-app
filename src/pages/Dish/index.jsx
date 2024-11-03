@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import fishCardBg from "../../assets/img/fishCardBg.png";
 import fishCard from "../../assets/img/fishCard.png";
 import fish from "../../assets/img/fish.png"
@@ -11,6 +11,7 @@ import Icon from "../../components/commons/Icon";
 import DishChoseModal from "../../components/ui/modals/DishChoseModal";
 import useBackButtonTg from "../../hooks/useBackButtonTg";
 import useModal from "../../hooks/useModal";
+import {useNavigate} from "react-router-dom";
 
 const slides = [
     {
@@ -39,11 +40,30 @@ const slides = [
 const Dish = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     let swiperRef = useRef(null);
+    const {isOpenModal, handlerToggleModal} = useModal();
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        window.Telegram.WebApp.BackButton.show();
+
+        const handleBackButtonClick = () => {
+            if (isOpenModal) {
+                handlerToggleModal();
+            } else {
+                navigate("/");
+            }
+        };
+
+        window.Telegram.WebApp.BackButton.onClick(handleBackButtonClick);
+
+        return () => {
+            window.Telegram.WebApp.BackButton.hide();
+            window.Telegram.WebApp.BackButton.offClick(handleBackButtonClick);
+        };
+    }, [isOpenModal, navigate, handlerToggleModal]);
     const handleSlideChange = (swiper) => {
         setCurrentIndex(swiper.activeIndex);
     };
-
     const handlePrevClick = () => {
         if (swiperRef.current) {
             swiperRef.current.slidePrev();
@@ -125,7 +145,7 @@ const Dish = () => {
                         ))}
                     </div>
                 </div>
-                <DishChoseModal />
+                {isOpenModal && <DishChoseModal handlerToggleModal={handlerToggleModal}/>}
             </div>
         </div>
     );
