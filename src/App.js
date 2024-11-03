@@ -16,23 +16,22 @@ function App() {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.setHeaderColor('#000000');
-
-            // Функция подтверждения перед закрытием
-            const handleBeforeUnload = (event) => {
-                const confirmationMessage = "Вы уверены, что хотите выйти из приложения?";
-                event.returnValue = confirmationMessage; // Это для браузеров
-                return confirmationMessage; // Это для других случаев
-            };
-
-            // Добавляем обработчик
-            window.addEventListener("beforeunload", handleBeforeUnload);
-
-            // Очистка обработчика при размонтировании компонента
-            return () => {
-                window.removeEventListener("beforeunload", handleBeforeUnload);
-            };
         }
     }, []);
+    window.Telegram.WebApp.showConfirm(
+        "Changes that you made may not be saved.", // Сообщение для отображения
+        (result) => {
+            if (result) {
+                // Пользователь нажал "Close anyway"
+                console.log("Confirmed");
+                // Ваш код для закрытия и сохранения изменений
+            } else {
+                // Пользователь нажал "Cancel"
+                console.log("Cancelled");
+            }
+        }
+    );
+
     return (
         <MainLayout>
             <Suspense fallback={<div>Loading...</div>}>
