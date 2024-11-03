@@ -16,35 +16,19 @@ function App() {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.setHeaderColor("#000000");
-
-            // Включить подтверждение закрытия приложения
             window.Telegram.WebApp.enableClosingConfirmation();
-
-            // Обработчик события popupClosed
             window.Telegram.WebApp.onEvent('popupClosed', (data) => {
                 console.log("Popup was closed", data);
             });
         }
-
         return () => {
             if (window.Telegram && window.Telegram.WebApp) {
-                // Отключить подтверждение закрытия при размонтировании
                 window.Telegram.WebApp.disableClosingConfirmation();
             }
         };
     }, []);
 
-    // Функция для показа подтверждения
-    const showConfirmClose = () => {
-        window.Telegram.WebApp.showConfirm("Are you sure you want to leave?", (result) => {
-            if (result) {
-                console.log("User confirmed closing.");
-                // Ваш код для завершения работы приложения
-            } else {
-                console.log("User canceled closing.");
-            }
-        });
-    };
+
 
     return (
         <MainLayout>
