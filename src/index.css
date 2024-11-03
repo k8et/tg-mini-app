@@ -34,19 +34,13 @@ body {
 }
 
 .scrol-hidden {
-    /* Скрыть горизонтальную полосу прокрутки */
     overflow-x: hidden;
-
-    /* Скрыть вертикальную полосу прокрутки, но оставить прокрутку возможной */
-    overflow-y: scroll; /* Или overflow-y: auto; */
-
-    /* Для Chrome и Safari */
-    scrollbar-width: none; /* Для Firefox */
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
-/* Для Webkit-браузеров (Chrome, Safari) */
 .scrol-hidden::-webkit-scrollbar {
-    display: none; /* Скрыть полосу прокрутки */
+    display: none;
 }
 .spin {
     animation: spin 1s linear infinite;

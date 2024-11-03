@@ -8,14 +8,13 @@ import sun from "./assets/img/sun.png";
 import clouds from "./assets/gif/clouds.gif";
 import gif from "./assets/gif/cat.gif";
 import Loader from "./components/commons/Loder";
-
-const Main = lazy(() => import("./pages/Main"));
-const QuestionMain = lazy(() => import("./pages/QuestionMain"));
-const Dish = lazy(() => import("./pages/Dish"));
-const Shop = lazy(() => import("./pages/Shop"));
-const Friends = lazy(() => import("./pages/Friends"));
-const Rewards = lazy(() => import("./pages/Rewards"));
-const Wallet = lazy(() => import("./pages/Wallet"));
+import Main from "./pages/Main";
+import Dish from "./pages/Dish";
+import QuestionMain from "./pages/QuestionMain";
+import Shop from "./pages/Shop";
+import Rewards from "./pages/Rewards";
+import Friends from "./pages/Friends";
+import Wallet from "./pages/Wallet";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -50,7 +49,6 @@ function App() {
 
     return (
         <MainLayout>
-            <Suspense fallback={<div></div>}>
                 <Routes>
                     <Route path="/" element={<Main/>}/>
                     <Route path="/dish" element={<Dish/>}/>
@@ -60,7 +58,6 @@ function App() {
                     <Route path="/rewards" element={<Rewards/>}/>
                     <Route path="/wallet" element={<Wallet/>}/>
                 </Routes>
-            </Suspense>
         </MainLayout>
     );
 }
