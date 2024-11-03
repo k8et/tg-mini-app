@@ -1,16 +1,22 @@
-import { useEffect } from "react";
+const useImagePreloader = (images) => {
+    return new Promise((resolve) => {
+        let loadedImagesCount = 0;
+        const totalImages = images.length;
 
-const useImagePreloader = (imageUrls) => {
-    useEffect(() => {
-        const images = imageUrls.map((url) => {
+        const onImageLoad = () => {
+            loadedImagesCount += 1;
+            if (loadedImagesCount === totalImages) {
+                resolve(); // Все изображения загружены
+            }
+        };
+
+        images.forEach((src) => {
             const img = new Image();
-            img.src = url;
-            return img;
+            img.src = src;
+            img.onload = onImageLoad;
+            img.onerror = onImageLoad; // Учитываем ошибку загрузки
         });
-
-        // Clean up function to release images if needed
-        return () => images.forEach(img => img.src = '');
-    }, [imageUrls]);
+    });
 };
 
 export default useImagePreloader;

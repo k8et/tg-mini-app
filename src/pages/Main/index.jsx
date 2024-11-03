@@ -8,7 +8,6 @@ import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import {Link} from "react-router-dom";
 import WalletButton from "../../components/contents/WalletButton";
-import useImagePreloader from "../../hooks/useImagePreloader";
 
 const iconsData = [
     {time: '13:21', icon: 'fish-icon'},
@@ -21,7 +20,6 @@ const iconsData = [
 const Main = () => {
         const userFriendlyAddress = useTonAddress();
         const [isHovered, setIsHovered] = useState(false);
-        useImagePreloader([cat, bg, sun, clouds, gif]);
 
         const handleHover = () => {
             if (!isHovered) {
@@ -50,14 +48,13 @@ const Main = () => {
                 {
                     isHovered ? (
                         <img
-                            className="absolute -bottom-[100px] ml-[30px] z-[100]"
+                            className="absolute max-w-[430px] -bottom-[100px] ml-[33px] z-[100]"
                             src={gif}
                             alt="Cat"
                         />
                     ) : (
                         <img
-                            width={330}
-                            className="absolute -bottom-[20px] z-[100] max-w-full h-auto"
+                            className="absolute max-w-[500px] -bottom-[20px] z-[100]  h-auto"
                             src={cat}
                             onClick={handleHover}
                             alt="Cat"
