@@ -17,20 +17,28 @@ function App() {
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.setHeaderColor('#000000');
         }
+
+        const handleBeforeUnload = (event) => {
+            window.Telegram.WebApp.showConfirm(
+                "Changes that you made may not be saved.",
+                (result) => {
+                    if (!result) {
+                        event.preventDefault(); // Отмена закрытия, если пользователь выбрал "Cancel"
+                    } else {
+                        console.log("Confirmed");
+                    }
+                }
+            );
+            // Требуется возврат пустой строки для отображения диалога в некоторых браузерах
+            event.returnValue = '';
+        };
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     }, []);
-    window.Telegram.WebApp.showConfirm(
-        "Changes that you made may not be saved.", // Сообщение для отображения
-        (result) => {
-            if (result) {
-                // Пользователь нажал "Close anyway"
-                console.log("Confirmed");
-                // Ваш код для закрытия и сохранения изменений
-            } else {
-                // Пользователь нажал "Cancel"
-                console.log("Cancelled");
-            }
-        }
-    );
 
     return (
         <MainLayout>
