@@ -1,12 +1,7 @@
-import React, {Suspense, lazy, useEffect, useState} from "react";
+import React, { useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layout";
-import useImagePreloader from "./hooks/useImagePreloader";
-import cat from "./assets/img/catMain.png";
-import bg from "./assets/svg/background.svg";
-import sun from "./assets/img/sun.png";
-import clouds from "./assets/gif/clouds.gif";
-import gif from "./assets/gif/cat.gif";
+
 import Loader from "./components/commons/Loder";
 import Main from "./pages/Main";
 import Dish from "./pages/Dish";
@@ -15,9 +10,10 @@ import Shop from "./pages/Shop";
 import Rewards from "./pages/Rewards";
 import Friends from "./pages/Friends";
 import Wallet from "./pages/Wallet";
+import {useImagePreloader} from "./hooks/useImagePreloader";
 
 function App() {
-    const [isLoading, setIsLoading] = useState(true);
+    const { imagesLoaded } = useImagePreloader();
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
@@ -34,18 +30,9 @@ function App() {
             }
         };
     }, []);
-    const imagesToPreload = [
-        cat,
-        bg,
-        sun,
-        clouds,
-        gif
-    ];
-    useImagePreloader(imagesToPreload).then(() => {
-        setIsLoading(false);
-    });
 
-    if (isLoading) return <Loader />
+
+    if (imagesLoaded) return <Loader />
 
     return (
         <MainLayout>
