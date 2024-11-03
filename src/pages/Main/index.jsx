@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useRef, useState} from 'react';
 import cat from "../../assets/img/catMain.png";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/img/sun.png";
@@ -19,17 +19,50 @@ const iconsData = [
 ];
 const Main = () => {
         const userFriendlyAddress = useTonAddress();
-        const [isHovered, setIsHovered] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const cachedImages = useRef({
+        catImage: null,
+        gifImage: null,
+        background: null,
+        sun: null,
+        clouds: null,
+    });
 
-        const handleHover = () => {
-            if (!isHovered) {
-                setIsHovered(true);
-                setTimeout(() => {
-                    setIsHovered(false);
-                }, 3000);
-            }
-        };
+    const loadImages = () => {
+        if (!cachedImages.current.catImage) {
+            cachedImages.current.catImage = new Image();
+            cachedImages.current.catImage.src = cat;
+        }
+        if (!cachedImages.current.gifImage) {
+            cachedImages.current.gifImage = new Image();
+            cachedImages.current.gifImage.src = gif;
+        }
+        if (!cachedImages.current.background) {
+            cachedImages.current.background = new Image();
+            cachedImages.current.background.src = bg;
+        }
+        if (!cachedImages.current.sun) {
+            cachedImages.current.sun = new Image();
+            cachedImages.current.sun.src = sun;
+        }
+        if (!cachedImages.current.clouds) {
+            cachedImages.current.clouds = new Image();
+            cachedImages.current.clouds.src = clouds;
+        }
+    };
 
+    const handleHover = () => {
+        if (!isHovered) {
+            setIsHovered(true);
+            setTimeout(() => {
+                setIsHovered(false);
+            }, 3000);
+        }
+    };
+
+    React.useEffect(() => {
+        loadImages();
+    }, []);
 
         return (
             <div
