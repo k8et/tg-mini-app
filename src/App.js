@@ -14,7 +14,7 @@ import Loader from "./components/commons/Loder";
 
 function App() {
     const { imagesLoaded } = useImagePreloader();
-    const [showContent, setShowContent] = useState(false);
+    const [showContent, setShowContent] = useState(true);
 
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp) {
@@ -34,17 +34,18 @@ function App() {
         };
     }, []);
 
+
     useEffect(() => {
         if (imagesLoaded) {
             const timer = setTimeout(() => {
-                setShowContent(true);
+                setShowContent(false);
             }, 2000);
 
             return () => clearTimeout(timer);
         }
     }, [imagesLoaded]);
 
-    if (!showContent) return <Loader />;
+    if (showContent) return <Loader />;
 
     return (
         <MainLayout>
