@@ -5,6 +5,7 @@ import fish from "../../assets/img/fakeFish.png";
 import dumbbell from "../../assets/img/dumbbell.png";
 import Tabs from "../../components/commons/Tabs";
 import {ItemSnacks, ItemUpgrades} from "../../components/contents/ShopItemsContent";
+import QuestionStoreModal from "../../components/ui/modals/QuestionStoreModal";
 
 const Shop = () => {
     const [activeTab, setActiveTab] = useState('snacks');
@@ -103,7 +104,9 @@ const Shop = () => {
                     </div>
                 )}
             </div>
-
+            <div className={"absolute top-[20px] right-[20px]"}>
+                <QuestionStoreModal/>
+            </div>
         </div>
     );
 };
