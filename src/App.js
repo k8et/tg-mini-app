@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout";
 
-import Loader from "./components/commons/Loader"; // Исправил опечатку с Loder на Loader
 import Main from "./pages/Main";
 import Dish from "./pages/Dish";
 import QuestionMain from "./pages/QuestionMain";
@@ -11,6 +10,7 @@ import Rewards from "./pages/Rewards";
 import Friends from "./pages/Friends";
 import Wallet from "./pages/Wallet";
 import { useImagePreloader } from "./hooks/useImagePreloader";
+import Loader from "./components/commons/Loder";
 
 function App() {
     const { imagesLoaded } = useImagePreloader();
