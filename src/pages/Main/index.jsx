@@ -1,4 +1,4 @@
-import React, {memo, useRef, useState} from 'react';
+import React, {memo, useEffect, useRef, useState} from 'react';
 import cat from "../../assets/img/catMain.png";
 import bg from "../../assets/svg/background.svg";
 import sun from "../../assets/img/sun.png";
@@ -54,13 +54,16 @@ const Main = () => {
         const handleHover = () => {
             if (!isHovered) {
                 setIsHovered(true);
-                setTimeout(() => {
-                    setIsHovered(false);
-                }, 3000);
+                setTimeout(() => setIsHovered(false), 3000);
             }
         };
 
-        React.useEffect(() => {
+        useEffect(() => {
+            return () => clearTimeout(handleHover);
+        }, []);
+
+
+        useEffect(() => {
             loadImages();
         }, []);
 
@@ -78,21 +81,13 @@ const Main = () => {
                     backgroundSize: 'cover, 203px 223px, cover'
                 }}
                 className={`w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]`}>
-                {
-                    isHovered ? (
-                        <img
-                            className="absolute max-w-[430px] -bottom-[100px] ml-[33px] z-[100]"
-                            src={gif}
-                            alt="Cat"
-                        />
-                    ) : (
-                        <img
-                            className="absolute max-w-[500px] -bottom-[20px] z-[100]  h-auto"
-                            src={cat}
-                            onClick={handleHover}
-                            alt="Cat"
-                        />
-                    )}
+                <img
+                    className={`absolute z-[100] h-auto ${isHovered ? "max-w-[430px] -bottom-[100px] ml-[33px]" : "max-w-[500px] -bottom-[20px]"}`}
+                    src={isHovered ? gif : cat}
+                    onClick={handleHover}
+                    alt="Cat"
+                />
+
 
                 <div className=" h-full w-full py-[6px] flex flex-col px-[12px] gap-[6px]">
                     <Link

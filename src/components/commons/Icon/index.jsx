@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import sprite from "../../../assets/svg/sprite.svg";
 
 const Icon = ({ name, className, height, width }) => (
@@ -7,4 +7,4 @@ const Icon = ({ name, className, height, width }) => (
   </svg>
 );
 
-export default Icon;
+export default memo(Icon);
