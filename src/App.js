@@ -9,10 +9,17 @@ import Rewards from "./pages/Rewards";
 import Friends from "./pages/Friends";
 import Wallet from "./pages/Wallet";
 import Loader from "./components/commons/Loder";
+import usePreloadImages from "./hooks/usePreloadImages";
 
 function App() {
     const [showContent, setShowContent] = useState(true);
-
+    const loading = usePreloadImages([
+        '/assets/img/catMain.png',
+        '/assets/img/background.png',
+        '/assets/img/sun.png',
+        '/assets/gif/clouds.gif',
+        '/assets/gif/cat.gif'
+    ]);
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
@@ -37,7 +44,6 @@ function App() {
         });
     }
 
-
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowContent(false);
@@ -46,8 +52,7 @@ function App() {
         return () => clearTimeout(timer);
     }, []);
 
-
-    if (showContent) return <Loader/>;
+    if (loading || showContent) return <Loader/>;
 
     return (
         <MainLayout>
