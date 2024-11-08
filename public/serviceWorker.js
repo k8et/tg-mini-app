@@ -1,7 +1,7 @@
 const CACHE_NAME = 'main-cache-v1';
 const urlsToCache = [
     '/assets/img/catMain.png',
-    '/assets/svg/background.svg',
+    '/assets/img/background.png',
     '/assets/img/sun.png',
     '/assets/gif/clouds.gif',
     '/assets/gif/cat.gif',

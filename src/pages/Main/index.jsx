@@ -29,7 +29,7 @@ const Main = () => {
                 style={{
                     backgroundColor: '#69ABDB',
                     backgroundImage: `
-            url('/assets/svg/background.svg'),     
+            url('/assets/img/background.png'),     
             url('/assets/img/sun.png'),    
             url('/assets/gif/clouds.gif')   
         `,

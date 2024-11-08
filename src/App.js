@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layout";
 import Main from "./pages/Main";
 import Dish from "./pages/Dish";
@@ -34,37 +34,31 @@ function App() {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/serviceWorker.js')
-                .then((registration) => {
-                    console.log('ServiceWorker registered:', registration);
-                })
-                .catch((registrationError) => {
-                    console.log('ServiceWorker registration failed:', registrationError);
-                });
         });
     }
 
 
     useEffect(() => {
-            const timer = setTimeout(() => {
-                setShowContent(false);
-            }, 2000);
+        const timer = setTimeout(() => {
+            setShowContent(false);
+        }, 2000);
 
-            return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
     }, []);
 
 
-    if (showContent) return <Loader />;
+    if (showContent) return <Loader/>;
 
     return (
         <MainLayout>
             <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/dish" element={<Dish />} />
-                <Route path="/question-main" element={<QuestionMain />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/friends" element={<Friends />} />
-                <Route path="/rewards" element={<Rewards />} />
-                <Route path="/wallet" element={<Wallet />} />
+                <Route path="/" element={<Main/>}/>
+                <Route path="/dish" element={<Dish/>}/>
+                <Route path="/question-main" element={<QuestionMain/>}/>
+                <Route path="/shop" element={<Shop/>}/>
+                <Route path="/friends" element={<Friends/>}/>
+                <Route path="/rewards" element={<Rewards/>}/>
+                <Route path="/wallet" element={<Wallet/>}/>
             </Routes>
         </MainLayout>
     );
