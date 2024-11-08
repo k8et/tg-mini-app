@@ -1,9 +1,4 @@
-import React, {memo, useEffect, useRef, useState} from 'react';
-import cat from "../../assets/img/catMain.png";
-import bg from "../../assets/svg/background.svg";
-import sun from "../../assets/img/sun.png";
-import clouds from "../../assets/gif/clouds.gif";
-import gif from "../../assets/gif/cat.gif";
+import React, {memo, useState} from 'react';
 import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import {Link} from "react-router-dom";
@@ -20,36 +15,6 @@ const iconsData = [
 const Main = () => {
         const userFriendlyAddress = useTonAddress();
         const [isHovered, setIsHovered] = useState(false);
-        const cachedImages = useRef({
-            catImage: null,
-            gifImage: null,
-            background: null,
-            sun: null,
-            clouds: null,
-        });
-
-        const loadImages = () => {
-            if (!cachedImages.current.catImage) {
-                cachedImages.current.catImage = new Image();
-                cachedImages.current.catImage.src = cat;
-            }
-            if (!cachedImages.current.gifImage) {
-                cachedImages.current.gifImage = new Image();
-                cachedImages.current.gifImage.src = gif;
-            }
-            if (!cachedImages.current.background) {
-                cachedImages.current.background = new Image();
-                cachedImages.current.background.src = bg;
-            }
-            if (!cachedImages.current.sun) {
-                cachedImages.current.sun = new Image();
-                cachedImages.current.sun.src = sun;
-            }
-            if (!cachedImages.current.clouds) {
-                cachedImages.current.clouds = new Image();
-                cachedImages.current.clouds.src = clouds;
-            }
-        };
 
         const handleHover = () => {
             if (!isHovered) {
@@ -58,23 +23,15 @@ const Main = () => {
             }
         };
 
-        useEffect(() => {
-            return () => clearTimeout(handleHover);
-        }, []);
-
-
-        useEffect(() => {
-            loadImages();
-        }, []);
 
         return (
             <div
                 style={{
                     backgroundColor: '#69ABDB',
                     backgroundImage: `
-            url('${bg}'),     
-            url('${sun}'),    
-            url('${clouds}')   
+            url('/assets/svg/background.svg'),     
+            url('/assets/img/sun.png'),    
+            url('/assets/gif/clouds.gif')   
         `,
                     backgroundPosition: 'center top 0px, right top, right top 20px',
                     backgroundRepeat: 'no-repeat',
@@ -83,7 +40,7 @@ const Main = () => {
                 className={`w-screen h-full relative  flex items-end justify-center bg-[#69ABDB]`}>
                 <img
                     className={`absolute z-[100] h-auto ${isHovered ? "max-w-[430px] -bottom-[100px] ml-[33px]" : "max-w-[500px] -bottom-[20px]"}`}
-                    src={isHovered ? gif : cat}
+                    src={isHovered ? "/assets/gif/cat.gif" : "/assets/img/catMain.png"}
                     onClick={handleHover}
                     alt="Cat"
                 />

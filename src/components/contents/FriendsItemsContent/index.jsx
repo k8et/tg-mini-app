@@ -1,5 +1,4 @@
 import {animated, useSpring} from "react-spring";
-import cat from "../../../assets/img/cat.png";
 import Icon from "../../commons/Icon";
 import React from "react";
 
@@ -9,13 +8,13 @@ const FriendItem = ({ item, index }) => {
         transform: 'translateY(0)',
         from: { opacity: 0, transform: 'translateY(-20px)' },
         config: { tension: 200, friction: 15 },
-        delay: index * 200 // Увеличиваем задержку для каждого элемента
+        delay: index * 200
     });
 
     return (
         <animated.div key={index} style={animationProps} className="w-full h-[72px] bg-[#151515] rounded-[10px] flex px-[16px] items-center justify-between">
             <div className={"flex gap-[12px] items-start"}>
-                <img width={40} height={40} src={cat} alt="" />
+                <img width={40} height={40} src={"/assets/img/cat.png"} alt="" />
                 <div className="flex flex-col">
                     <h1 className="font-[500] text-[14px] leading-[16px]">{item.year}</h1>
                     <p className="font-[400] text-[10px] text-[#D7D7D766] leading-[11px]">

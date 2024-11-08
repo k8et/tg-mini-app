@@ -1,5 +1,5 @@
 import React from 'react';
-import bg from "../../assets/img/bg-friend.png";
+
 import FriendItem from "../../components/contents/FriendsItemsContent";
 import CopyButton from "../../components/commons/CopyButton";
 
@@ -21,7 +21,7 @@ const Friends = () => {
         <div
             className="w-full h-full bg-[#101010] text-white p-[12px] bg-no-repeat"
             style={{
-                backgroundImage: `url(${bg})`,
+                backgroundImage: `url("/assets/img/bg-friend.png")`,
                 backgroundPosition: 'top left',
                 backgroundSize: 'cover'
             }}

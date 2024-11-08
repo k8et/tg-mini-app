@@ -1,5 +1,4 @@
 import React from 'react';
-import bg from "../../assets/img/bg-rewars.png";
 import RewardsItemsContent from "../../components/contents/RewardsItemsContent";
 
 const Rewards = () => {
@@ -24,7 +23,7 @@ const Rewards = () => {
         <div
             className="w-full h-full bg-[#101010] text-white p-[12px] bg-no-repeat"
             style={{
-                backgroundImage: `url(${bg})`,
+                backgroundImage: `url("/assets/img/bg-rewars.png")`,
                 backgroundPosition: 'top left',
                 backgroundSize: 'cover'
             }}

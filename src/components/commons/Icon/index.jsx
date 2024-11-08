@@ -1,10 +1,12 @@
-import React, {memo} from "react";
-import sprite from "../../../assets/svg/sprite.svg";
+import React, { memo } from "react";
 
 const Icon = ({ name, className, height, width }) => (
-  <svg style={{ height: `${height}px`, width: `${width}px` }} className={` ${className}`}>
-    <use xlinkHref={`${sprite}#${name}`} />
-  </svg>
+    <svg
+        style={{ height: `${height}px`, width: `${width}px` }}
+        className={className}
+    >
+        <use xlinkHref={`/assets/svg/sprite.svg#${name}`} />
+    </svg>
 );
 
 export default memo(Icon);

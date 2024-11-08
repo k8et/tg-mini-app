@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {useTransition} from 'react-spring';
 import Icon from "../../components/commons/Icon";
-import fish from "../../assets/img/fakeFish.png";
-import dumbbell from "../../assets/img/dumbbell.png";
 import Tabs from "../../components/commons/Tabs";
 import {ItemSnacks, ItemUpgrades} from "../../components/contents/ShopItemsContent";
 import QuestionStoreModal from "../../components/ui/modals/QuestionStoreModal";
@@ -18,7 +16,7 @@ const Shop = () => {
                 duration: '8 часов',
                 reward: '+0.05 TON',
                 price: 1,
-                image: fish,
+                image: "/assets/img/fakeFish.png",
             },
             {
                 name: 'Бутерброд с икрой',
@@ -26,7 +24,7 @@ const Shop = () => {
                 duration: '4 часа',
                 reward: '+0.02 TON',
                 price: 1,
-                image: fish,
+                image: "/assets/img/fakeFish.png",
             }
         ],
         upgrades: [
@@ -37,7 +35,7 @@ const Shop = () => {
                 interval: 'Раз в 1 час',
                 reward: '+0.05 TON',
                 price: 1,
-                image: dumbbell,
+                image: "/assets/img/dumbbell.png",
             },
             {
                 name: 'Кот Том 2.0',
@@ -46,7 +44,7 @@ const Shop = () => {
                 interval: 'Раз в 2 часа',
                 reward: '+0.10 TON',
                 price: 2,
-                image: dumbbell,
+                image: "/assets/img/dumbbell.png",
             }
         ]
     };

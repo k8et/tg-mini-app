@@ -6,7 +6,6 @@ import {BrowserRouter} from "react-router-dom";
 import {TonConnectUIProvider} from "@tonconnect/ui-react";
 
 import "swiper/css/bundle";
-import ImagePreloader from "./hooks/useImagePreloader";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,9 +15,7 @@ root.render(
             // defaultNetwork="testnet"
             manifestUrl={`https://tg-mini-app-ilfx.vercel.app/tonconnect-manifest.json`}>
             <BrowserRouter>
-                <ImagePreloader>
                     <App/>
-                </ImagePreloader>
             </BrowserRouter>
         </TonConnectUIProvider>
     </React.StrictMode>

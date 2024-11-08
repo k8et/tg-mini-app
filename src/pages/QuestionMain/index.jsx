@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import screen1 from '../../assets/img/screen1.png';
 import Icon from '../../components/commons/Icon';
 import { Link } from 'react-router-dom';
 import useBackButtonTg from "../../hooks/useBackButtonTg";
@@ -58,7 +57,7 @@ const QuestionMain = () => {
                             <h2 className="text-white text-2xl">{slide.title}</h2>
                             <img
                                 className="mx-auto mt-[40px] mb-[20px] max-w-full h-[50vh] object-contain"
-                                src={screen1}
+                                src={"/assets/img/screen1.png"}
                                 alt="screen"
                             />
                             <p className="text-white/75 max-w-[291px] mx-auto">{slide.text}</p>

@@ -1,7 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-import fishCardBg from "../../assets/img/fishCardBg.png";
-import fishCard from "../../assets/img/fishCard.png";
-import fish from "../../assets/img/fish.png"
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css/effect-cards";
 import 'swiper/css/pagination';
@@ -9,7 +6,6 @@ import 'swiper/css/navigation';
 import {EffectCards} from "swiper/modules";
 import Icon from "../../components/commons/Icon";
 import DishChoseModal from "../../components/ui/modals/DishChoseModal";
-import useBackButtonTg from "../../hooks/useBackButtonTg";
 import useModal from "../../hooks/useModal";
 import {useNavigate} from "react-router-dom";
 
@@ -81,7 +77,7 @@ const Dish = () => {
     return (
         <div
             style={{
-                backgroundImage: `url('${fishCardBg}')`,
+                backgroundImage: `url('/assets/img/fishCardBg.png')`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
@@ -108,14 +104,14 @@ const Dish = () => {
                             <SwiperSlide key={index} className="border  border-white rounded-[20px]">
                                 <div
                                     style={{
-                                        backgroundImage: `url('${fishCard}')`,
+                                        backgroundImage: `url('/assets/img/fishCard.png')`,
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
                                         backgroundSize: 'cover'
                                     }}
                                     className="text-center justify-between bg-[#151515] h-full flex flex-col px-[20px] py-[10px] items-center">
                                     <h2 className="text-white text-[16px] font-[500] w-full text-left">{slide.title}</h2>
-                                    <img alt={"error"} src={fish} className={" "}/>
+                                    <img alt={"error"} src={"/assets/img/fish.png"} className={" "}/>
                                     <p className="text-[#D7D7D7] leading-[14px] font-[300] text-[12px]">{slide.text}</p>
                                 </div>
                             </SwiperSlide>

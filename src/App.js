@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout";
-
 import Main from "./pages/Main";
 import Dish from "./pages/Dish";
 import QuestionMain from "./pages/QuestionMain";
@@ -9,11 +8,9 @@ import Shop from "./pages/Shop";
 import Rewards from "./pages/Rewards";
 import Friends from "./pages/Friends";
 import Wallet from "./pages/Wallet";
-import { useImagePreloader } from "./hooks/useImagePreloader";
 import Loader from "./components/commons/Loder";
 
 function App() {
-    const { imagesLoaded } = useImagePreloader();
     const [showContent, setShowContent] = useState(true);
 
     useEffect(() => {
@@ -34,16 +31,27 @@ function App() {
         };
     }, []);
 
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/serviceWorker.js')
+                .then((registration) => {
+                    console.log('ServiceWorker registered:', registration);
+                })
+                .catch((registrationError) => {
+                    console.log('ServiceWorker registration failed:', registrationError);
+                });
+        });
+    }
+
 
     useEffect(() => {
-        if (imagesLoaded) {
             const timer = setTimeout(() => {
                 setShowContent(false);
             }, 2000);
 
             return () => clearTimeout(timer);
-        }
-    }, [imagesLoaded]);
+    }, []);
+
 
     if (showContent) return <Loader />;
 

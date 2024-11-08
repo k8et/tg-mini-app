@@ -1,4 +1,4 @@
-import fish from "../../assets/img/fakeFish.png";
+import fish from "/assets/img/fakeFish.png";
 import dumbbell from "../../assets/img/dumbbell.png";
 export const items = {
     snacks: [
