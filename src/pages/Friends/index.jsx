@@ -2,6 +2,7 @@ import React from 'react';
 
 import FriendItem from "../../components/contents/FriendsItemsContent";
 import CopyButton from "../../components/commons/CopyButton";
+import QuestionFriendModal from "../../components/ui/modals/QuestionFriendModal";
 
 const Friends = () => {
     const fakeData = [
@@ -29,7 +30,7 @@ const Friends = () => {
             <div className="flex items-center justify-center my-[38px]">
                 <div className="flex items-center space-x-2">
                     <h1 className="font-[700] text-[22px]">
-                        Получай <span className="text-[#44BDFF]">15%</span> от <br />
+                        Получай <span className="text-[#44BDFF]">15%</span> от <br/>
                         дохода друзей
                     </h1>
                 </div>
@@ -42,14 +43,17 @@ const Friends = () => {
                     >
                         Пригласить друга
                     </button>
-                    <CopyButton textToCopy="@mmxmhmcf_bot" />
+                    <CopyButton textToCopy="@mmxmhmcf_bot"/>
                 </div>
             </div>
-            <div style={{ height: 'calc(100vh - 315px)' }}
+            <div style={{height: 'calc(100vh - 315px)'}}
                  className="scroll-hidden space-y-[6px] overflow-x-hidden mt-[6px] overflow-y-auto">
                 {fakeData.map((item, index) => (
-                    <FriendItem key={index} item={item} index={index} />
+                    <FriendItem key={index} item={item} index={index}/>
                 ))}
+            </div>
+            <div className={"absolute top-[20px] right-[20px]"}>
+                <QuestionFriendModal/>
             </div>
         </div>
     );

@@ -88,7 +88,7 @@ const Dish = () => {
                 <h1 className="font-[700] text-white text-[22px] text-center">
                     Выберите ваше <br/><span className="text-[#0098EA]">блюдо</span> дня!
                 </h1>
-                <div className="my-auto relative">
+                <div className="my-auto relative flex flex-col">
                     <Swiper
                         navigation={false}
                         effect={"cards"}
@@ -141,7 +141,11 @@ const Dish = () => {
                             />
                         ))}
                     </div>
+                    <a href={"https://google.com/"} target={"_blank"} className={"text-white/50 w-full text-[12px] mt-3 text-center"} rel="noreferrer">
+                    Как это работает?
+                    </a>
                 </div>
+
                 <DishChoseModal handlerToggleModal={handlerToggleModal} isOpenModal={isOpenModal}/>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import RewardsItemsContent from "../../components/contents/RewardsItemsContent";
+import QuestionRewardModal from "../../components/ui/modals/QuestionRewardModal";
 
 const Rewards = () => {
     const fakeData = [
@@ -43,6 +44,9 @@ const Rewards = () => {
                 {fakeData.map((item, index) => (
                     <RewardsItemsContent key={index} item={item} index={index}/>
                 ))}
+            </div>
+            <div className={"absolute top-[20px] right-[20px]"}>
+                <QuestionRewardModal/>
             </div>
         </div>
     );
