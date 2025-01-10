@@ -11,13 +11,13 @@ function WalletButton() {
 
     const springProps = useSpring({
         opacity: isMenuOpen ? 1 : 0,
-        transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
+        transform: isMenuOpen ? 'translateY(0)' : 'translateY(-2px)',
         config: {tension: 300, friction: 20},
     });
 
     return (
         <div className="relative ">
-            {!userFriendlyAddress ? (
+            {userFriendlyAddress ? (
                 <div className="relative">
                     <TonConnectButton/>
                     <button
