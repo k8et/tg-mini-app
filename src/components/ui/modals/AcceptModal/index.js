@@ -15,7 +15,7 @@ const AcceptModal = ({children}) => {
 
             {isOpenModal && (
                 <ModalWindow
-                    disableBackButton
+                    disableBackButton={false}
                     closeWindow={handlerToggleModal}
                     className={"  "}
                 >
