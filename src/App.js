@@ -10,6 +10,7 @@ import Friends from "./pages/Friends";
 import Wallet from "./pages/Wallet";
 import Loader from "./components/commons/Loder";
 import usePreloadImages from "./hooks/usePreloadImages";
+import VotingResultsPage from "./pages/VotingResultsPage";
 
 function App() {
     const [showContent, setShowContent] = useState(true);
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/friends" element={<Friends/>}/>
                 <Route path="/rewards" element={<Rewards/>}/>
                 <Route path="/wallet" element={<Wallet/>}/>
+                <Route path="/voting-result" element={<VotingResultsPage/>}/>
             </Routes>
         </MainLayout>
     );

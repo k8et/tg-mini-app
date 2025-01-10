@@ -1,8 +1,10 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {useTonAddress} from "@tonconnect/ui-react";
 import Icon from "../../components/commons/Icon";
 import {Link} from "react-router-dom";
 import WalletButton from "../../components/contents/WalletButton";
+import PointsClaimModal from "../../components/ui/modals/PointsClaimModal";
+import useModal from "../../hooks/useModal";
 
 const iconsData = [
     {time: '13:21', icon: 'fish-icon'},
@@ -15,6 +17,7 @@ const iconsData = [
 const Main = () => {
         const userFriendlyAddress = useTonAddress();
         const [isHovered, setIsHovered] = useState(false);
+        const {isOpenModal, handlerToggleModal, setOpenModal} = useModal()
 
         const handleHover = () => {
             if (!isHovered) {
@@ -23,6 +26,9 @@ const Main = () => {
             }
         };
 
+        useEffect(() => {
+            setOpenModal(true)
+        }, [setOpenModal])
 
         return (
             <div
@@ -127,6 +133,7 @@ const Main = () => {
                         </div>
                     }
                 </div>
+                <PointsClaimModal isOpenModal={isOpenModal} handlerToggleModal={handlerToggleModal}/>
             </div>
         );
     }
